@@ -16,7 +16,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");

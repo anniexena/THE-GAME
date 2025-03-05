@@ -71,6 +71,7 @@ public class Dog_Script : MonoBehaviour
     public void resetText() {
         dialogueText.text = "";
         index = 0;
-        dialogueBox.SetActive(false);
+        if (dialogueBox != null)
+            dialogueBox.SetActive(false);
     }
 }
