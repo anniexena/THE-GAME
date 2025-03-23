@@ -7,7 +7,7 @@ public class Edge : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        // Comment in start as a test
     }
 
     // Update is called once per frame
