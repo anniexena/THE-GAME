@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fa977d065efa89046b7e061cf3735f5b
+guid: c0e5ec107411492439024275a2c8f49b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4797373553716167200
-    second: test-image_0
+      213: 5877985903527639453
+    second: enviroment take 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test-image_0
+      name: enviroment take 2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 5
-        width: 2400
-        height: 2461
+        y: 0
+        width: 960
+        height: 640
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0edf4e3ab2e4c6db0800000000000000
-      internalID: -4797373553716167200
+      spriteID: d99b48e490dc29150800000000000000
+      internalID: 5877985903527639453
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      test-image_0: -4797373553716167200
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
