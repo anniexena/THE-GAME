@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9487f4043865846ae6e31410400951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growWait: 3.5
   treeSprites:
   - {fileID: -7303930701400678757, guid: 4ce111a419745e64596582e9989be7de, type: 3}
   - {fileID: 2235953078937852754, guid: f8f21e57f9bab5343ad96df4291ed56a, type: 3}
@@ -108,3 +107,6 @@ MonoBehaviour:
   - {fileID: 911263697844686939, guid: 6d10361307ac0dd46a1e79c8c6418457, type: 3}
   - {fileID: -7053379496666770610, guid: 975fb7b0b2bed58489fa20db79aeb76e, type: 3}
   - {fileID: -5105631409802020386, guid: 57f1601ac81e8124b9c3e573447f7d11, type: 3}
+  phase: 0
+  seed: {fileID: 2597994501178518713}
+  seedSpawnWait: 0
