@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NPC
   - PlayerInventory
+  - Seed
   layers:
   - Default
   - TransparentFX

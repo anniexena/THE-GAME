@@ -1,14 +1,17 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class TreeScript : MonoBehaviour
 {
     public Inventory playerInventory;
+    public GameObject seed;
     private int seeds;
-
 
     private float seedSpawnTimer = 0;
     public float seedSpawnWait;
     private bool seedSpawnTimerStart = true;
+    private float wOffset = 4;
+    private float hOffset = 6.6f;
 
     private float cutTimer = 0;
     public float cutWait = 2.5f;
@@ -30,6 +33,16 @@ public class TreeScript : MonoBehaviour
             if (seedSpawnTimer > seedSpawnWait)
             {
                 Debug.Log("Tree disperses " + seeds);
+                for (int i = 0; i < seeds; i++)
+                {
+                    float low_x = transform.position.x - wOffset;
+                    float high_x = transform.position.x + wOffset;
+                    float low_y = transform.position.y - hOffset;
+                    float high_y = transform.position.y + hOffset;
+
+                    Instantiate(seed, new Vector3(Random.Range(low_x, high_x), 
+                        Random.Range(low_x, high_x), 0), transform.rotation);
+                }
                 seedSpawnTimerStart = false;
             }
         }
