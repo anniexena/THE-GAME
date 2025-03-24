@@ -150,7 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9be1e6108ef0724c9852772116a648d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutTime: 2.5
+  playerInventory: {fileID: 0}
+  seedSpawnWait: 15
+  cutWait: 2.5
 --- !u!61 &49988471
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -298,7 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9be1e6108ef0724c9852772116a648d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutTime: 2.5
+  playerInventory: {fileID: 0}
+  seedSpawnWait: 15
+  cutWait: 2.5
 --- !u!61 &739706033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -453,7 +457,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149b42c256381174f8569342c48040af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedsStoring: 0
 --- !u!224 &1269376811
 RectTransform:
   m_ObjectHideFlags: 0
@@ -641,7 +644,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9be1e6108ef0724c9852772116a648d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutTime: 2.5
+  playerInventory: {fileID: 0}
+  seedSpawnWait: 15
+  cutWait: 2.5
 --- !u!61 &1723497356
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -789,7 +794,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9be1e6108ef0724c9852772116a648d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutTime: 2.5
+  playerInventory: {fileID: 0}
+  seedSpawnWait: 15
+  cutWait: 2.5
 --- !u!61 &2041038575
 BoxCollider2D:
   m_ObjectHideFlags: 0
