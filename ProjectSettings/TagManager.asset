@@ -44,6 +44,15 @@ TagManager:
   - name: BG
     uniqueID: 1146898685
     locked: 0
+  - name: Ground
+    uniqueID: 4042079383
+    locked: 0
+  - name: Water
+    uniqueID: 2663091497
+    locked: 0
+  - name: Objects
+    uniqueID: 1527620159
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
