@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4ce111a419745e64596582e9989be7de
+guid: 04bb60e7b551ac94e9bd9d5547c1139d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7303930701400678757
-    second: tree-cycle-1_0
+      213: -7443756053782179069
+    second: background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tree-cycle-1_0
+      name: background_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 92
-        height: 48
+        width: 555
+        height: 136
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9e51f699b933aa90800000000000000
-      internalID: -7303930701400678757
+      spriteID: 30356abce4772b890800000000000000
+      internalID: -7443756053782179069
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      tree-cycle-1_0: -7303930701400678757
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
