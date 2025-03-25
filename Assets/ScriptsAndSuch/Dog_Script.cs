@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Dog_Script : MonoBehaviour
 {
@@ -14,10 +15,24 @@ public class Dog_Script : MonoBehaviour
     public float wordSpeed;
     public bool playerIsInRange;
 
+    [SerializeField] private Sprite dialogueSprite;
+    [SerializeField] private Image dialogueImage;
+    [SerializeField] private string characterName;
+    [SerializeField] private Text nameText;
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && playerIsInRange) {
+
+            if (dialogueSprite != null && dialogueImage != null) {
+                dialogueImage.sprite = dialogueSprite;
+            }
+
+            if (!string.IsNullOrEmpty(characterName) && nameText != null) {
+                nameText.text = characterName;
+            }
+
             if (dialogueBox.activeInHierarchy) {
                 resetText();
             }
@@ -73,5 +88,6 @@ public class Dog_Script : MonoBehaviour
         index = 0;
         if (dialogueBox != null)
             dialogueBox.SetActive(false);
+            SceneManager.LoadScene("TreeGame");
     }
 }
