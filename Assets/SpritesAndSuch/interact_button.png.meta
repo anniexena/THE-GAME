@@ -121,7 +121,7 @@ TextureImporter:
         width: 58
         height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      interact_button_0: -4005089891802119887
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
