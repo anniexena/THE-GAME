@@ -88,6 +88,5 @@ public class Dog_Script : MonoBehaviour
         index = 0;
         if (dialogueBox != null)
             dialogueBox.SetActive(false);
-            SceneManager.LoadScene("TreeGame");
     }
 }

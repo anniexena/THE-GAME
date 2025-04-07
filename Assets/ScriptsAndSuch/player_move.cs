@@ -18,6 +18,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Don't let player move when dialogue is playing
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
+
+
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
