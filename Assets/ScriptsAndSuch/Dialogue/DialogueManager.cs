@@ -24,7 +24,8 @@ public class DialogueManager : MonoBehaviour
     // Other stuff
     public bool dialogueIsPlaying { get; private set; }
     private static DialogueManager instance;
-    public GameObject nextButton;
+    [SerializeField] public GameObject nextButton;
+    public bool isFollowing;
 
     private void Awake()
     {
@@ -99,6 +100,14 @@ public class DialogueManager : MonoBehaviour
 
     private void ExitDialogue()
     {
+        // Check for specific conditions //
+
+        // Check for dog following
+        if (currentStory.variablesState["followPlayer"] != null)
+        {
+            isFollowing = (bool)currentStory.variablesState["followPlayer"];
+        }
+
         dialogueIsPlaying = false;
         dialogueBox.SetActive(false);
         dialogueText.text = "";
@@ -124,6 +133,11 @@ public class DialogueManager : MonoBehaviour
             index++; 
         }
 
+        if (index != 0)
+        {
+            nextButton.SetActive(false);
+        }
+
         // Hide unneeded choices for this dialogue
         for (int i = index; i < choices.Length; i++)
         {
@@ -134,6 +148,7 @@ public class DialogueManager : MonoBehaviour
     public void OnChoiceSelected(int index)
     {
         currentStory.ChooseChoiceIndex(index);
+        nextButton.SetActive(true);
         ContinueStory();
     }
 

@@ -21,9 +21,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // Don't let player move when dialogue is playing
         if (DialogueManager.GetInstance().dialogueIsPlaying)
         {
+            animator.SetBool("Moving", false);
             return;
         }
-
 
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
