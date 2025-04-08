@@ -26,6 +26,8 @@ public class DialogueManager : MonoBehaviour
     private static DialogueManager instance;
     [SerializeField] public GameObject nextButton;
     public bool isFollowing;
+    private Player_Stats playerStats;
+    private int sustainability_level;
 
     private void Awake()
     {
@@ -42,7 +44,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialogueBox.SetActive(false);
 
-        // Get choices
+        // Get choice boxes
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
         foreach (GameObject choice in choices)
@@ -77,6 +79,9 @@ public class DialogueManager : MonoBehaviour
         {
             nameText.text = NPCName;
         }
+
+        // Update sustainability level
+        UpdateSL();
 
         ContinueStory();
     }
@@ -150,6 +155,32 @@ public class DialogueManager : MonoBehaviour
         currentStory.ChooseChoiceIndex(index);
         nextButton.SetActive(true);
         ContinueStory();
+    }
+
+    private void UpdateSL()
+    {
+        // Get + set sustainability level
+        GameObject player = GameObject.Find("Player");
+        if (player == null)
+        {
+            Debug.LogError("Player object could not be found!");
+        }
+        else
+        {
+            playerStats = player.GetComponent<Player_Stats>();
+            if (playerStats == null)
+            {
+                Debug.LogError("Player stats script could not be found!");
+            }
+            else
+            {
+                sustainability_level = playerStats.getSL();
+                 if (currentStory.variablesState["sustainability_lvl"] != null)
+                {
+                    currentStory.variablesState["sustainability_lvl"] = sustainability_level;
+                }
+            }
+        }
     }
 
     public static DialogueManager GetInstance()

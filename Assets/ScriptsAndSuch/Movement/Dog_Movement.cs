@@ -7,6 +7,7 @@ public class Dog_Movement : MonoBehaviour
     public Animator animator;
     public Transform player;
     private float stopDistance = 1f;
+    public bool isFollowing;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +18,10 @@ public class Dog_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (!isFollowing)
+        //{
+        //    isFollowing = DialogueManager.GetInstance().isFollowing
+        //}
         if (DialogueManager.GetInstance().isFollowing) {
                 Follow();
             }

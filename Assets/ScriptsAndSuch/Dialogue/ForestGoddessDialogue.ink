@@ -1,32 +1,34 @@
+VAR sustainability_lvl = 0
+
 -> main
 
 === main ===
 Greetings! I am the Forest Goddess.
-Would you like to learn about how to help the forest?
+Would you like to know how sustainable you have been?
     + [Yes]
         -> yes
     + [No]
         -> no
 
 === yes ===
-Great! You can start by only cutting trees when you need to.
-The lumberjack always wants more lumber, but you need to find a balance.
-    + [What about the town?]
-        -> explanation
-    + [Sounds good]
-        -> end
-
-=== no ===
-I understand, but remember that the health of the forest is important!
+Great!
+Hmm... Let's see...
+{sustainability_lvl > 10:
+    You are taking good care of the forest!
+- else:
+    {sustainability_lvl < 0:
+        The forest is suffering!
+    - else:
+        You have a good balance!
+    }
+}
     -> end
 
-=== explanation ===
-Yes, the town needs lumbar to survive...
-...but they also need the forest to survive.
-We need to take good care of it for the good of the environment and for ourselves.
+=== no ===
+I understand.
     -> end
     
 === end
-Come to me for more ways on how to help the forest!
+Come back to me to see how you the forest is doing!
 
 -> END
