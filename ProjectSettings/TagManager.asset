@@ -47,10 +47,13 @@ TagManager:
   - name: Ground
     uniqueID: 4042079383
     locked: 0
+  - name: Stone
+    uniqueID: 2505549541
+    locked: 0
   - name: Water
     uniqueID: 2663091497
     locked: 0
-  - name: Objects
+  - name: Houses
     uniqueID: 1527620159
     locked: 0
   - name: Default
