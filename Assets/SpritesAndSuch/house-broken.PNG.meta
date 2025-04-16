@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7bc077e69264abe4d8ba1ae3de81d6bb
+guid: 656bd2c1d2d318343bffc0c0bd39c315
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1923994175756728024
-    second: house_0
+      213: 2283400984198277439
+    second: house-broken_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: house_0
+      name: house-broken_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 650
-        height: 805
+        width: 507
+        height: 648
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 829891cad799c45e0800000000000000
-      internalID: -1923994175756728024
+      spriteID: f396aeed81540bf10800000000000000
+      internalID: 2283400984198277439
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 766e9f63d0e1b624596364bcca96e04d
+    spriteID: a324ffe8d362cfb4583603d1253c6079
     internalID: 0
     vertices: []
     indices: 
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      house_0: -1923994175756728024
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

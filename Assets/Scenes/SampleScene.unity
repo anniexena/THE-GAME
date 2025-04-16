@@ -4537,6 +4537,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TownHealth
       objectReference: {fileID: 0}
+    - target: {fileID: 7565671122730739204, guid: 78c234667bcc2494c8aec1d55756f837, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

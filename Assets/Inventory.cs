@@ -38,11 +38,25 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Seeds: " + seedsStoring);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && woodStoring > HOUSE_COST)
+            // Spawns a house
+            //if (Input.GetKeyDown(KeyCode.Space) && woodStoring > HOUSE_COST)
+            //{
+            //    Instantiate(house, worldPos, Quaternion.identity);
+            //    woodStoring -= HOUSE_COST;
+            //    Debug.Log("Wood: " + woodStoring);
+            //}
+        }
+        else
+        {
+            if (hit.collider.gameObject.tag == "House")
             {
-                Instantiate(house, worldPos, Quaternion.identity);
-                woodStoring -= HOUSE_COST;
-                Debug.Log("Wood: " + woodStoring);
+                if (Input.GetMouseButtonDown(0) && woodStoring > HOUSE_COST)
+                {
+                    House house = hit.collider.GetComponent<House>();
+                    woodStoring -= HOUSE_COST;
+                    house.fix();
+                    Debug.Log("Wood: " + woodStoring);
+                }
             }
         }
 

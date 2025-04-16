@@ -147,3 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651e1eeba137b1440ab621ffa490f0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fixWait: 0
+  needsFixing: 0
+  broken: {fileID: 2283400984198277439, guid: 656bd2c1d2d318343bffc0c0bd39c315, type: 3}
+  normal: {fileID: -1923994175756728024, guid: 7bc077e69264abe4d8ba1ae3de81d6bb, type: 3}
