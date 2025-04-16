@@ -48,8 +48,8 @@ public class ForestHealth : MonoBehaviour
                 changeTimerStart = false;
                 changeTimer = 0;
                 revise(animalsActual, animalsExpected);
-                print("Healthy plants present: " + healthyPlants);
-                print("Animals present: " + animalsActual);
+                //print("Healthy plants present: " + healthyPlants);
+                //print("Animals present: " + animalsActual);
             }
         }
     }

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -27,19 +28,25 @@ public class Inventory : MonoBehaviour
         Vector3 worldPos = cam.ScreenToWorldPoint(mousePos);
         worldPos.z = 0f; // Set Z to 0 if you're working in 2D
 
-        if (Input.GetMouseButtonDown(1) && seedsStoring > 0) {
-            Instantiate(seed, worldPos, Quaternion.identity);
-
-            seedsStoring--;
-            Debug.Log("Seeds: " + seedsStoring);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && woodStoring > HOUSE_COST)
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+        if (hit.collider == null)
         {
-            Instantiate(house, worldPos, Quaternion.identity);
-            woodStoring -= HOUSE_COST;
-            Debug.Log("Wood: " + woodStoring);
+            if (Input.GetMouseButtonDown(1) && seedsStoring > 0)
+            {
+                Instantiate(seed, worldPos, Quaternion.identity);
+                seedsStoring--;
+                Debug.Log("Seeds: " + seedsStoring);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && woodStoring > HOUSE_COST)
+            {
+                Instantiate(house, worldPos, Quaternion.identity);
+                woodStoring -= HOUSE_COST;
+                Debug.Log("Wood: " + woodStoring);
+            }
         }
+
+
     }
 
     public void addSeeds(int toAdd)

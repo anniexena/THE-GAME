@@ -38,8 +38,8 @@ public class TownHealth : MonoBehaviour
                 changeTimerStart = false;
                 changeTimer = 0;
                 revise(peopleActual, peopleExpected);
-                print("Houses present: " + healthyHouses);
-                print("People present: " + peopleActual);
+                //print("Houses present: " + healthyHouses);
+                //print("People present: " + peopleActual);
             }
         }
     }

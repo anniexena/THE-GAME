@@ -45,6 +45,12 @@ public class Seed : MonoBehaviour
 
         // Determines time spent in the first phase
         growWait = seedSpawnWait + Random.Range(20, 50);
+
+        // Determines wood drop based on starting phase
+        for (int i = 0; i < phase; i++)
+        {
+            wood += Random.Range(1, 2);
+        }
     }
 
     // Update is called once per frame
