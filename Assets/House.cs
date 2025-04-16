@@ -40,4 +40,9 @@ public class House : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = normal;
         }
     }
+
+    public bool getNeedsFixing()
+    {
+        return needsFixing;
+    }
 }

@@ -2570,6 +2570,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1271968960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9124961232128612538, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
+  m_PrefabInstance: {fileID: 1813538626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1271968965
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271968960}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.6, y: 3.18}
+    newSize: {x: 1.6, y: 3.18}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.85, y: 4.49}
+  m_EdgeRadius: 0
 --- !u!1001 &1366755570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3498,11 +3549,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 304718146448755851, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.32
+      value: -3.76
       objectReference: {fileID: 0}
     - target: {fileID: 304718146448755851, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.09
+      value: -3.44
       objectReference: {fileID: 0}
     - target: {fileID: 304718146448755851, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3536,6 +3587,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6870675553645804738, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
+      propertyPath: NPCName
+      value: Lumberjack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6870675553645804738, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
+      propertyPath: inkJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: f19833d5e11c626429878bc860d9565a, type: 3}
+    - target: {fileID: 6870675553645804738, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
+      propertyPath: NPCSprite
+      value: 
+      objectReference: {fileID: 6480629943745174096, guid: f1cf36c11a6419c47bc4c1d4d610b084, type: 3}
+    - target: {fileID: 6870675553645804738, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
+      propertyPath: interactionCue
+      value: 
+      objectReference: {fileID: 1813538627}
     - target: {fileID: 9124961232128612538, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
       propertyPath: m_Name
       value: NPC
@@ -3544,8 +3611,16 @@ PrefabInstance:
     - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9124961232128612538, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1271968965}
   m_SourcePrefab: {fileID: 100100000, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
+--- !u!1 &1813538627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5691230754024632875, guid: e3a208bb0101fd24dbaef62285502851, type: 3}
+  m_PrefabInstance: {fileID: 1813538626}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1814246768
 PrefabInstance:
   m_ObjectHideFlags: 0

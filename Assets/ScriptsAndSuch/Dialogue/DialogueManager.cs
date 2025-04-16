@@ -62,7 +62,8 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogue(TextAsset inkJSON, Sprite NPCSprite, string NPCName)
+    //ADDED parent field - atreyu
+    public void EnterDialogue(TextAsset inkJSON, Sprite NPCSprite, string NPCName, GameObject parent)
     {
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
@@ -80,10 +81,26 @@ public class DialogueManager : MonoBehaviour
             nameText.text = NPCName;
         }
 
+        //NEW
+        if (parent.GetComponent<NPC>() != null)
+        {
+            UpdateHS(parent.GetComponent<NPC>());
+        }
+        //END NEW
+
         // Update sustainability level
         UpdateSL();
 
         ContinueStory();
+    }
+
+    private void UpdateHS(NPC npc)
+    {
+        bool houseBroken = npc.getHouseState();
+        if (currentStory.variablesState["houseBroken"] != null)
+        {
+            currentStory.variablesState["houseBroken"] = houseBroken;
+        }
     }
 
     // For clicking continue button in dialogue
@@ -175,7 +192,7 @@ public class DialogueManager : MonoBehaviour
             else
             {
                 sustainability_level = playerStats.getSL();
-                 if (currentStory.variablesState["sustainability_lvl"] != null)
+                if (currentStory.variablesState["sustainability_lvl"] != null)
                 {
                     currentStory.variablesState["sustainability_lvl"] = sustainability_level;
                 }
