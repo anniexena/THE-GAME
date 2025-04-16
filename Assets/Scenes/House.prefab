@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2597994501178518713
+--- !u!1 &1124365785298308669
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7157044777593186762}
-  - component: {fileID: 8157959047088079420}
-  - component: {fileID: -3885084720728482377}
+  - component: {fileID: 2830750705996243064}
+  - component: {fileID: 4409876533507508266}
+  - component: {fileID: 6549546088836843059}
+  - component: {fileID: 2596291092830234316}
   m_Layer: 0
-  m_Name: Seed
-  m_TagString: Seed
+  m_Name: House
+  m_TagString: House
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7157044777593186762
+--- !u!4 &2830750705996243064
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2597994501178518713}
+  m_GameObject: {fileID: 1124365785298308669}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.41, y: -1.6, z: 0.032200962}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.19, y: -0.79, z: 0.0353962}
+  m_LocalScale: {x: 0.3534, y: 0.3263, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8157959047088079420
+--- !u!212 &4409876533507508266
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2597994501178518713}
+  m_GameObject: {fileID: 1124365785298308669}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,37 +78,72 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7303930701400678757, guid: 4ce111a419745e64596582e9989be7de, type: 3}
+  m_Sprite: {fileID: -1923994175756728024, guid: 7bc077e69264abe4d8ba1ae3de81d6bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.92, y: 0.48}
+  m_Size: {x: 6.5, y: 8.05}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3885084720728482377
+--- !u!61 &6549546088836843059
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124365785298308669}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.5, y: 8.05}
+    newSize: {x: 6.5, y: 8.05}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 6.5, y: 8.05}
+  m_EdgeRadius: 0
+--- !u!114 &2596291092830234316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2597994501178518713}
+  m_GameObject: {fileID: 1124365785298308669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b9487f4043865846ae6e31410400951, type: 3}
+  m_Script: {fileID: 11500000, guid: 651e1eeba137b1440ab621ffa490f0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantSprites:
-  - {fileID: -7303930701400678757, guid: 4ce111a419745e64596582e9989be7de, type: 3}
-  - {fileID: 2235953078937852754, guid: f8f21e57f9bab5343ad96df4291ed56a, type: 3}
-  - {fileID: 7640294407064498587, guid: 5ffd329f87632704eae269875423b6ea, type: 3}
-  - {fileID: 911263697844686939, guid: 6d10361307ac0dd46a1e79c8c6418457, type: 3}
-  - {fileID: -7053379496666770610, guid: 975fb7b0b2bed58489fa20db79aeb76e, type: 3}
-  - {fileID: -5105631409802020386, guid: 57f1601ac81e8124b9c3e573447f7d11, type: 3}
-  playerInventory: {fileID: 0}
-  phase: 0
-  seedSpawnWait: 0
-  cutWait: 2.5

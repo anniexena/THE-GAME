@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Seed : MonoBehaviour
@@ -20,7 +21,10 @@ public class Seed : MonoBehaviour
     private int seeds; // Number of seeds to spawn
     private bool spread = false; // Whether we've spawned seeds yet
 
-    //Related to cutting down a plant
+    // How much initial wood to drop, adds after each phase
+    private int wood = 0;
+
+    // Related to cutting down a plant
     private float cutTimer = 0; // Timer for cutting
     public float cutWait = 2.5f; // Time spent cutting
     private bool cutTimerStart = false; // Whether we've started cutting or not
@@ -56,6 +60,7 @@ public class Seed : MonoBehaviour
             if (phase < plantSprites.Length - 1)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = plantSprites[++phase];
+                wood += Random.Range(1, 2);
                 updateCollider();
 
                 Debug.Log("Plant growing up to phase " + phase + "!");
@@ -96,6 +101,7 @@ public class Seed : MonoBehaviour
 
                 growTimer -= cutTimer; // Prevents phase change during cutting
                 if (!spread && phase == MATURITY) { playerInventory.addSeeds(seeds); } // Plant would have seeds we could collect
+                playerInventory.addWood(wood);
                 Debug.Log("Plant cut down");
                 Destroy(gameObject);
             }
@@ -105,13 +111,20 @@ public class Seed : MonoBehaviour
     // If we left-click on the plant, we start cutting it down
     private void OnMouseDown()
     {
-        Debug.Log("Cutting Plant down");
-        cutTimerStart = true;
+        if (phase > 0)
+        {
+            Debug.Log("Cutting Plant down");
+            cutTimerStart = true;
+        }
     }
 
     // Updates collider based on sprite
     void updateCollider()
     {
+        if (GetComponent<BoxCollider2D>() != null)
+        {
+            Destroy(GetComponent<BoxCollider2D>());
+        }
         BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
         collider.size = GetComponent<SpriteRenderer>().bounds.size; // Match sprite size
         collider.offset = Vector2.zero; // Center the collider
@@ -126,6 +139,11 @@ public class Seed : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = plantSprites[p];
             updateCollider();
         }
+    }
+
+    public int getPhase()
+    {
+        return phase;
     }
 
     // Spawns the seeds

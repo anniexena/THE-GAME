@@ -6,6 +6,7 @@ public class TreeScript : MonoBehaviour
     public Inventory playerInventory;
     public GameObject seed;
     private int seeds;
+    private int wood;
 
     private float seedSpawnTimer = 0;
     public float seedSpawnWait;
@@ -21,6 +22,7 @@ public class TreeScript : MonoBehaviour
     {
         playerInventory = GameObject.FindGameObjectWithTag("PlayerInventory").GetComponent<Inventory>();
         seeds = Random.Range(1, 5);
+        wood = Random.Range(5, 10);
         seedSpawnWait = Random.Range(10, 20);
     }
 
@@ -55,7 +57,9 @@ public class TreeScript : MonoBehaviour
                 Debug.Log("Tree cut down");
                 cutTimerStart = false;
                 cutTimer = 0;
+
                 playerInventory.addSeeds(seeds);
+                playerInventory.addWood(wood);
                 Destroy(gameObject);
             }
         }
@@ -67,4 +71,10 @@ public class TreeScript : MonoBehaviour
         Debug.Log("Cutting tree down");
         cutTimerStart = true;
     }
+
+    int getPhase()
+    {
+        return 5;
+    }
+
 }
