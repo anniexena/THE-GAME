@@ -32,7 +32,6 @@ public class DialogueTrigger : MonoBehaviour
             {
                 // OLD
                 // DialogueManager.GetInstance().EnterDialogue(inkJSON, NPCSprite, NPCName);
-                print(gameObject.name);
                 DialogueManager.GetInstance().EnterDialogue(inkJSON, NPCSprite, NPCName, gameObject);
             }
         }

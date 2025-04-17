@@ -48,8 +48,8 @@ public class ForestHealth : MonoBehaviour
                 changeTimerStart = false;
                 changeTimer = 0;
                 revise(animalsActual, animalsExpected);
-                //print("Healthy plants present: " + healthyPlants);
-                //print("Animals present: " + animalsActual);
+                print("Healthy plants present: " + healthyPlants);
+                print("Animals present: " + animalsActual);
             }
         }
     }
@@ -59,7 +59,7 @@ public class ForestHealth : MonoBehaviour
     {
         if (actual < expected)
         {
-            Instantiate(animal, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
+            Instantiate(animal, new Vector3(Random.Range(-250, 250), Random.Range(-10, 10), 0), Quaternion.identity);
         }
         else
         {

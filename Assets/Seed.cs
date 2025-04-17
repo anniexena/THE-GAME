@@ -1,5 +1,6 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Seed : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class Seed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y); // Updates layering
+        //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y); // Updates layering
         growTimer += Time.deltaTime;
 
         // If our timer's gone off, increment the phase
@@ -131,16 +132,19 @@ public class Seed : MonoBehaviour
         {
             Destroy(GetComponent<BoxCollider2D>());
         }
+        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
+
         BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
-        collider.size = GetComponent<SpriteRenderer>().bounds.size; // Match sprite size
-        collider.offset = Vector2.zero; // Center the collider
+        Vector2 spriteSize = sprite.rect.size / sprite.pixelsPerUnit;
+        collider.size = spriteSize; // Match sprite size
+        collider.offset = sprite.bounds.center; // Center the collider
     }
 
     // Sets the phase and updates sprite and collider
     void setPhase(int p)
     {
         if (p >= 0 && p < plantSprites.Length) 
-        { 
+        {
             phase = p;
             gameObject.GetComponent<SpriteRenderer>().sprite = plantSprites[p];
             updateCollider();
