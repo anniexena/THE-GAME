@@ -63,6 +63,15 @@ public class Inventory : MonoBehaviour
 
     }
 
+    public int getWood()
+    {
+        return woodStoring;
+    }
+    public int getSeeds()
+    {
+        return seedsStoring;
+    }
+
     public void addSeeds(int toAdd)
     {
         seedsStoring += toAdd;
