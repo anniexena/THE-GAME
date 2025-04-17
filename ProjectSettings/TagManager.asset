@@ -50,11 +50,17 @@ TagManager:
   - name: Ground
     uniqueID: 4042079383
     locked: 0
+  - name: Ground2(Dirt)
+    uniqueID: 3321994591
+    locked: 0
   - name: Stone
     uniqueID: 2505549541
     locked: 0
   - name: Water
     uniqueID: 2663091497
+    locked: 0
+  - name: Decorations
+    uniqueID: 1265098043
     locked: 0
   - name: Houses
     uniqueID: 1527620159
