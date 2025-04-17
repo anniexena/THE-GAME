@@ -47,10 +47,13 @@ TagManager:
   - name: BG
     uniqueID: 1146898685
     locked: 0
-  - name: Ground
+  - name: dirt
+    uniqueID: 780022529
+    locked: 0
+  - name: Grass
     uniqueID: 4042079383
     locked: 0
-  - name: Ground2(Dirt)
+  - name: Ground2
     uniqueID: 3321994591
     locked: 0
   - name: Stone
