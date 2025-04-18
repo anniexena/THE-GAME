@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7303930701400678757, guid: 4ce111a419745e64596582e9989be7de, type: 3}
+  m_Sprite: {fileID: 6585419574933917568, guid: 4db608c1c607f09458fe211aaf995b08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,12 +101,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantSprites:
-  - {fileID: -7303930701400678757, guid: 4ce111a419745e64596582e9989be7de, type: 3}
-  - {fileID: 2235953078937852754, guid: f8f21e57f9bab5343ad96df4291ed56a, type: 3}
-  - {fileID: 7640294407064498587, guid: 5ffd329f87632704eae269875423b6ea, type: 3}
-  - {fileID: 911263697844686939, guid: 6d10361307ac0dd46a1e79c8c6418457, type: 3}
-  - {fileID: -7053379496666770610, guid: 975fb7b0b2bed58489fa20db79aeb76e, type: 3}
-  - {fileID: -5105631409802020386, guid: 57f1601ac81e8124b9c3e573447f7d11, type: 3}
+  - {fileID: 6585419574933917568, guid: 4db608c1c607f09458fe211aaf995b08, type: 3}
+  - {fileID: -3014933965744564690, guid: 93bc360175d88a64694a8f53abf430cc, type: 3}
+  - {fileID: 1816743161780134773, guid: a663e5796f12da9428b8eb25c5256d04, type: 3}
+  - {fileID: -1489513473958117525, guid: 79942e00552fb324ba48524754b9761e, type: 3}
+  - {fileID: -5565673695683581102, guid: a2c6565e530dc99428c9b794aa9c3110, type: 3}
+  - {fileID: 6588800042006967255, guid: 629f907278327f4479755c8006b4a461, type: 3}
   playerInventory: {fileID: 0}
   phase: 0
   seedSpawnWait: 0
