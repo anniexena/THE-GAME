@@ -1,6 +1,7 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.U2D;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using static UnityEditor.PlayerSettings;
 
 public class Seed : MonoBehaviour
@@ -18,8 +19,8 @@ public class Seed : MonoBehaviour
     // Relating to spawning seeds at plant's maturity
     private float seedSpawnTimer = 0; // Timer for growing
     public float seedSpawnWait; // Time spent before spawning seeds
-    private float seedSpawnXoffset = 4; // x-offset for spawning seeds
-    private float seedSpawnYoffset = 6.6f; // y-offset for spawning seeds
+    private float seedSpawnXoffset = 25f; // x-offset for spawning seeds
+    private float seedSpawnYoffset = 20f; // y-offset for spawning seeds
     private int seeds; // Number of seeds to spawn
     private bool spread = false; // Whether we've spawned seeds yet
 
@@ -69,11 +70,10 @@ public class Seed : MonoBehaviour
             // If still a phase with a sprite, update sprite, phase, collider, and reset growth timer
             if (phase < plantSprites.Length - 1)
             {
-                gameObject.GetComponent<SpriteRenderer>().sprite = plantSprites[++phase];
+                setPhase(phase + 1);
                 wood += Random.Range(1, 2);
-                updateColliders();
 
-                Debug.Log("Plant growing up to phase " + phase + "!");
+                //Debug.Log("Plant growing up to phase " + phase + "!");
 
                 // Reset grow timer vars, randomly generates time spent in next phase again
                 growTimer = 0;
@@ -81,7 +81,7 @@ public class Seed : MonoBehaviour
             }
             else // Otherwise, plant has died
             {
-                Debug.Log("Plant has now died");
+                //Debug.Log("Plant has now died");
                 Destroy(gameObject);
             }
         }
@@ -112,7 +112,7 @@ public class Seed : MonoBehaviour
                 growTimer -= cutTimer; // Prevents phase change during cutting
                 if (!spread && phase == MATURITY) { playerInventory.addSeeds(seeds); } // Plant would have seeds we could collect
                 playerInventory.addWood(wood);
-                Debug.Log("Plant cut down");
+                //Debug.Log("Plant cut down");
                 Destroy(gameObject);
             }
         }
@@ -123,7 +123,7 @@ public class Seed : MonoBehaviour
     {
         if (phase > 0)
         {
-            Debug.Log("Cutting Plant down");
+            //Debug.Log("Cutting Plant down");
             cutTimerStart = true;
         }
     }
@@ -131,22 +131,28 @@ public class Seed : MonoBehaviour
     // Updates collider based on sprite
     void updateColliders()
     {
-        if (GetComponent<BoxCollider2D>() != null) // Destroy both trigger and hitbox
+        BoxCollider2D[] colliders = GetComponents<BoxCollider2D>();
+        foreach (BoxCollider2D collider in colliders)
         {
-            Destroy(GetComponent<BoxCollider2D>());
-            Destroy(GetComponent<BoxCollider2D>());
+            Destroy(collider);
         }
 
+
+        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
+        Vector2 spriteSize = sprite.rect.size / sprite.pixelsPerUnit;
+        BoxCollider2D triggerCollider = gameObject.AddComponent<BoxCollider2D>();
         if (phase > 0)
         {
-            Sprite sprite = GetComponent<SpriteRenderer>().sprite;
-
             BoxCollider2D hitboxCollider = gameObject.AddComponent<BoxCollider2D>();
-            Vector2 spriteSize = sprite.rect.size / sprite.pixelsPerUnit;
             hitboxCollider.size = new Vector2(spriteSize.x / 2, spriteSize.y / 2); // Match sprite size
             hitboxCollider.offset = new Vector2(sprite.bounds.center.x, -spriteSize.y / 4); // Center the collider
 
-            BoxCollider2D triggerCollider = gameObject.AddComponent<BoxCollider2D>();
+            triggerCollider.size = spriteSize; // Match sprite size
+            triggerCollider.offset = sprite.bounds.center; // Center the collider
+            triggerCollider.isTrigger = true;
+        }
+        else
+        {
             triggerCollider.size = spriteSize; // Match sprite size
             triggerCollider.offset = sprite.bounds.center; // Center the collider
             triggerCollider.isTrigger = true;
@@ -172,17 +178,31 @@ public class Seed : MonoBehaviour
     // Spawns the seeds
     void spawn()
     {
-        Debug.Log("Plant disperses " + seeds);
+        int spawn = 0;
         for (int i = 0; i < seeds; i++)
         {
-            float low_x = transform.position.x - seedSpawnXoffset;
-            float low_y = transform.position.y - seedSpawnYoffset;
-            float high_x = low_x + 2 * seedSpawnXoffset;
-            float high_y = low_y + 2* seedSpawnYoffset;
+            int spawnAttempts = 5;
+            for (int spawnAttempt = 0; spawnAttempt < spawnAttempts; spawnAttempt++)
+            {
+                float low_x = transform.position.x - seedSpawnXoffset;
+                float low_y = transform.position.y - seedSpawnYoffset;
+                float high_x = transform.position.x + seedSpawnXoffset;
+                float high_y = transform.position.y + seedSpawnYoffset;
+                Vector3 spawnPos = new Vector3(Random.Range(low_x, high_x),
+                    Random.Range(low_y, high_y), 0);
 
-            GameObject newSeed = Instantiate(gameObject, new Vector3(Random.Range(low_x, high_x),
-                Random.Range(low_x, high_x), 0), transform.rotation);
-            newSeed.GetComponent<Seed>().setPhase(0); // Ensure it starts as a seed
+                float checkRadius = 4.5f; // Adjust this based on your seed size
+                Collider2D hit = Physics2D.OverlapCircle(spawnPos, checkRadius);
+                if (hit == null)
+                {
+                    GameObject newSeed = Instantiate(gameObject, spawnPos, transform.rotation);
+                    newSeed.GetComponent<Seed>().setPhase(0); // Ensure it starts as a seed
+                    spawn++;
+                    break;
+                }
+            }
         }
+    
+       Debug.Log("Plant Expected: " + seeds + ", Plant Actual: " + spawn);
     }
 }
