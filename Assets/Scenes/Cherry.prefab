@@ -46,8 +46,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: plantSprites.Array.size
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
+      propertyPath: 'plantSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -8847020894271463969, guid: f24cfae72e6d8554aa6187fdb4de3a83, type: 3}
+    - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
+      propertyPath: 'plantSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: -4293578332642877083, guid: 0a73937f8acff2344b81aa448ea7add2, type: 3}
+    - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
+      propertyPath: 'plantSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 245290832453743664, guid: bae1d9c6916cb724e988b2a903f10170, type: 3}
+    - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
+      propertyPath: 'plantSprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: -7674596046866949070, guid: 2042af5a5c98c6647af7c409311735fd, type: 3}
+    - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
+      propertyPath: 'plantSprites.Array.data[4]'
+      value: 
+      objectReference: {fileID: 6813027302289984247, guid: 955d032e5915dee4eb2463c32065f3b0, type: 3}
+    - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
+      propertyPath: 'plantSprites.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2571330705345463923, guid: 24eaa52366eaf934e96fe71e9c7b0d93, type: 3}
     - target: {fileID: 2597994501178518713, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: m_Name
       value: Cherry
