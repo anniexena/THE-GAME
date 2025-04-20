@@ -100,14 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9487f4043865846ae6e31410400951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantSprites:
-  - {fileID: 6585419574933917568, guid: 4db608c1c607f09458fe211aaf995b08, type: 3}
-  - {fileID: -3014933965744564690, guid: 93bc360175d88a64694a8f53abf430cc, type: 3}
-  - {fileID: 1816743161780134773, guid: a663e5796f12da9428b8eb25c5256d04, type: 3}
-  - {fileID: -1489513473958117525, guid: 79942e00552fb324ba48524754b9761e, type: 3}
-  - {fileID: -5565673695683581102, guid: a2c6565e530dc99428c9b794aa9c3110, type: 3}
-  - {fileID: 6588800042006967255, guid: 629f907278327f4479755c8006b4a461, type: 3}
   playerInventory: {fileID: 0}
   phase: 0
-  seedSpawnWait: 0
-  cutWait: 2.5
+  growWaitLow: 0
+  growWaitHigh: 0
+  seedSpawnWaitLow: 0
+  seedSpawnWaitHigh: 0
+  cutWait: 0
+  seedsLow: 0
+  seedsHigh: 0

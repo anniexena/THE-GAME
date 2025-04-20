@@ -6,31 +6,36 @@ using static UnityEditor.PlayerSettings;
 
 public class Seed : MonoBehaviour
 {
-    // General
-    [SerializeField] Sprite[] plantSprites; // Reference to array of sprites our plant can be
+    // Changeable Values
+    public Sprite[] plantSprites; // Reference to array of sprites our plant can be
     public Inventory playerInventory; // Reference to the player's inventory
+    public int phase; // Current growth phase
+    public float growWaitLow; // Lowest possible time spent in a phase
+    public float growWaitHigh; // Highest possible time spent in a phase
+    public float seedSpawnWaitLow; // Lowest possible time spent before spawning seeds
+    public float seedSpawnWaitHigh; // Highest possible time spent before spawning seeds
+    public float cutWait; // Time needed to cut down tree
+    public int seedsLow; // Lowest possible number of seeds to spawn
+    public int seedsHigh; // Highest possible number of seeds to spawn
+    public float seedSpawnXoffset; // x-offset for spawning seeds
+    public float seedSpawnYoffset; // y-offset for spawning seeds
 
-    // Relating to phases of growth
-    public int phase = 0; // Current growth phase
+    // Properties to be updated based on changeable values
+    private int seeds;
+    private float seedSpawnWait;
+    private float growWait;
+
+    // Properties related to 'drops'
     private const int MATURITY = 4; // Phase where tree can sprout seeds
-    private float growTimer = 0; // Timer for growing
-    private float growWait; // Time spent in a phase
-
-    // Relating to spawning seeds at plant's maturity
-    private float seedSpawnTimer = 0; // Timer for growing
-    public float seedSpawnWait; // Time spent before spawning seeds
-    private float seedSpawnXoffset = 25f; // x-offset for spawning seeds
-    private float seedSpawnYoffset = 20f; // y-offset for spawning seeds
-    private int seeds; // Number of seeds to spawn
     private bool spread = false; // Whether we've spawned seeds yet
+    private int wood = 0; // How much initial wood to drop, adds after each phase
 
-    // How much initial wood to drop, adds after each phase
-    private int wood = 0;
-
-    // Related to cutting down a plant
+    // Relating to timers
+    private float growTimer = 0; // Timer for growing
     private float cutTimer = 0; // Timer for cutting
-    public float cutWait = 2.5f; // Time spent cutting
+    private float seedSpawnTimer = 0; // Timer for growing
     private bool cutTimerStart = false; // Whether we've started cutting or not
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,22 +43,19 @@ public class Seed : MonoBehaviour
         // Sets inventory to correct GameObject
         playerInventory = GameObject.FindGameObjectWithTag("PlayerInventory").GetComponent<Inventory>();
 
-        // Sets sprite and collider
+        // Sets sprite and colliders
         gameObject.GetComponent<SpriteRenderer>().sprite = plantSprites[phase];
         updateColliders();
 
         // Determines seeds and wait time for spawning them
-        seeds = Random.Range(1, 5);
-        seedSpawnWait = Random.Range(10, 20);
+        seeds = Random.Range(seedsLow, seedsHigh);
+        seedSpawnWait = Random.Range(seedSpawnWaitLow, seedSpawnWaitHigh);
 
         // Determines time spent in the first phase
-        growWait = seedSpawnWait + Random.Range(20, 50);
+        growWait = Random.Range(growWaitLow, growWaitHigh);
 
         // Determines wood drop based on starting phase
-        for (int i = 0; i < phase; i++)
-        {
-            wood += Random.Range(1, 2);
-        }
+        for (int i = 0; i < phase; i++) { wood += Random.Range(1, 2); }
 
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
     }
@@ -77,7 +79,7 @@ public class Seed : MonoBehaviour
 
                 // Reset grow timer vars, randomly generates time spent in next phase again
                 growTimer = 0;
-                growWait = seedSpawnWait + Random.Range(20, 50);
+                growWait = Random.Range(growWaitLow, growWaitHigh);
             }
             else // Otherwise, plant has died
             {
