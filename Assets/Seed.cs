@@ -1,6 +1,7 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.U2D;
+using static UnityEditor.PlayerSettings;
 
 public class Seed : MonoBehaviour
 {
@@ -17,8 +18,8 @@ public class Seed : MonoBehaviour
     // Relating to spawning seeds at plant's maturity
     private float seedSpawnTimer = 0; // Timer for growing
     public float seedSpawnWait; // Time spent before spawning seeds
-    private float seedSpawnWoffset = 4; // x-offset for spawning seeds
-    private float seedSpawnHoffset = 6.6f; // y-offset for spawning seeds
+    private float seedSpawnXoffset = 4; // x-offset for spawning seeds
+    private float seedSpawnYoffset = 6.6f; // y-offset for spawning seeds
     private int seeds; // Number of seeds to spawn
     private bool spread = false; // Whether we've spawned seeds yet
 
@@ -38,7 +39,7 @@ public class Seed : MonoBehaviour
 
         // Sets sprite and collider
         gameObject.GetComponent<SpriteRenderer>().sprite = plantSprites[phase];
-        updateCollider();
+        updateColliders();
 
         // Determines seeds and wait time for spawning them
         seeds = Random.Range(1, 5);
@@ -52,6 +53,8 @@ public class Seed : MonoBehaviour
         {
             wood += Random.Range(1, 2);
         }
+
+        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
     }
 
     // Update is called once per frame
@@ -68,7 +71,7 @@ public class Seed : MonoBehaviour
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = plantSprites[++phase];
                 wood += Random.Range(1, 2);
-                updateCollider();
+                updateColliders();
 
                 Debug.Log("Plant growing up to phase " + phase + "!");
 
@@ -126,18 +129,28 @@ public class Seed : MonoBehaviour
     }
 
     // Updates collider based on sprite
-    void updateCollider()
+    void updateColliders()
     {
-        if (GetComponent<BoxCollider2D>() != null)
+        if (GetComponent<BoxCollider2D>() != null) // Destroy both trigger and hitbox
         {
             Destroy(GetComponent<BoxCollider2D>());
+            Destroy(GetComponent<BoxCollider2D>());
         }
-        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
 
-        BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
-        Vector2 spriteSize = sprite.rect.size / sprite.pixelsPerUnit;
-        collider.size = spriteSize; // Match sprite size
-        collider.offset = sprite.bounds.center; // Center the collider
+        if (phase > 0)
+        {
+            Sprite sprite = GetComponent<SpriteRenderer>().sprite;
+
+            BoxCollider2D hitboxCollider = gameObject.AddComponent<BoxCollider2D>();
+            Vector2 spriteSize = sprite.rect.size / sprite.pixelsPerUnit;
+            hitboxCollider.size = new Vector2(spriteSize.x / 2, spriteSize.y / 2); // Match sprite size
+            hitboxCollider.offset = new Vector2(sprite.bounds.center.x, -spriteSize.y / 4); // Center the collider
+
+            BoxCollider2D triggerCollider = gameObject.AddComponent<BoxCollider2D>();
+            triggerCollider.size = spriteSize; // Match sprite size
+            triggerCollider.offset = sprite.bounds.center; // Center the collider
+            triggerCollider.isTrigger = true;
+        }
     }
 
     // Sets the phase and updates sprite and collider
@@ -147,7 +160,7 @@ public class Seed : MonoBehaviour
         {
             phase = p;
             gameObject.GetComponent<SpriteRenderer>().sprite = plantSprites[p];
-            updateCollider();
+            updateColliders();
         }
     }
 
@@ -162,10 +175,10 @@ public class Seed : MonoBehaviour
         Debug.Log("Plant disperses " + seeds);
         for (int i = 0; i < seeds; i++)
         {
-            float low_x = transform.position.x - seedSpawnWoffset;
-            float low_y = transform.position.y - seedSpawnHoffset;
-            float high_x = low_x + 2 * seedSpawnWoffset;
-            float high_y = low_y + 2* seedSpawnHoffset;
+            float low_x = transform.position.x - seedSpawnXoffset;
+            float low_y = transform.position.y - seedSpawnYoffset;
+            float high_x = low_x + 2 * seedSpawnXoffset;
+            float high_y = low_y + 2* seedSpawnYoffset;
 
             GameObject newSeed = Instantiate(gameObject, new Vector3(Random.Range(low_x, high_x),
                 Random.Range(low_x, high_x), 0), transform.rotation);

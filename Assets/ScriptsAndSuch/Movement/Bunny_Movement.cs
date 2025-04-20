@@ -33,5 +33,7 @@ public class Bunny_Movement : MonoBehaviour
                 animator.SetFloat("Direction", 1f);
             }
         }
+        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
+
     }
 }

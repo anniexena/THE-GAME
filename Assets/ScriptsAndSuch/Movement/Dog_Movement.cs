@@ -29,7 +29,7 @@ public class Dog_Movement : MonoBehaviour
         if (!DialogueManager.GetInstance().isFollowing) {
                 StopFollow();
             }
-        
+        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
     }
 
     void Follow() {

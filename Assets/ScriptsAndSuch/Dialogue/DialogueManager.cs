@@ -106,7 +106,6 @@ public class DialogueManager : MonoBehaviour
     // For clicking continue button in dialogue
     public void ContinueStory()
     {
-        print("you did the things");
         // Display dialogue if there is more
         if (currentStory.canContinue)
         {

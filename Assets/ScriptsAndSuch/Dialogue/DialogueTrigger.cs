@@ -21,6 +21,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         playerIsInRange = false;
         interactionCue.SetActive(false);
+        interactionCue.GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
     }
 
     private void Update()

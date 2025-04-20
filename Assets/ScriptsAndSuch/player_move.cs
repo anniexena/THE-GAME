@@ -11,7 +11,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        print("WE START NOW");
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
     }
@@ -34,6 +33,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetFloat("Move_X", change.x);
             animator.SetFloat("Move_Y", change.y);
             animator.SetBool("Moving", true);
+            GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
         }
         else {
             animator.SetBool("Moving", false);
@@ -41,6 +41,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
     void MoveCharacter() {
-        rigidBody.MovePosition(transform.position + change * speed * Time.deltaTime);
+        rigidBody.MovePosition(transform.position + change.normalized * speed * Time.deltaTime);
     }
 }

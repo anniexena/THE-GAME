@@ -13,6 +13,7 @@ public class House : MonoBehaviour
     void Start()
     {
         fixWait = Random.Range(10, 30);
+        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
     }
 
     // Update is called once per frame
