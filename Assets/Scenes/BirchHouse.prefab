@@ -13,16 +13,20 @@ PrefabInstance:
       value: BirchHouse
       objectReference: {fileID: 0}
     - target: {fileID: 2596291092830234316, guid: e3655ce7c3273a24da830332cee1e17c, type: 3}
+      propertyPath: cost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596291092830234316, guid: e3655ce7c3273a24da830332cee1e17c, type: 3}
       propertyPath: woodType
       value: Birch
       objectReference: {fileID: 0}
     - target: {fileID: 2596291092830234316, guid: e3655ce7c3273a24da830332cee1e17c, type: 3}
       propertyPath: fixWaitLow
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2596291092830234316, guid: e3655ce7c3273a24da830332cee1e17c, type: 3}
       propertyPath: fixWaitHigh
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2596291092830234316, guid: e3655ce7c3273a24da830332cee1e17c, type: 3}
       propertyPath: houseStates.Array.size

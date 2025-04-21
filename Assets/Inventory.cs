@@ -12,7 +12,6 @@ public class Inventory : MonoBehaviour
 
     public Camera cam;
 
-    private const int HOUSE_COST = 5;
     private Dictionary<string, int> seedsStoring;
     private string seedIndex;
     private Dictionary<string, int> woodStoring;
@@ -96,12 +95,12 @@ public class Inventory : MonoBehaviour
         }
         else if (hit.collider.gameObject.tag == "House")
         {
-            if (Input.GetMouseButtonDown(0) && getWood(woodIndex) > HOUSE_COST)
+            House house = hit.collider.GetComponent<House>();
+            if (Input.GetMouseButtonDown(0) && getWood(woodIndex) > house.getCost())
             {
-                House house = hit.collider.GetComponent<House>();
                 if (house.woodType == woodIndex && house.getFixesNeeded() > 0)
                 {
-                    woodStoring[woodIndex] -= HOUSE_COST;
+                    woodStoring[woodIndex] -= house.getCost();
                     house.fix();
                 }
             }

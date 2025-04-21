@@ -7,6 +7,7 @@ public class House : MonoBehaviour
     public float fixWaitHigh; // Highest time before house needs to be fixed
     public Sprite[] houseStates;
     public string woodType;
+    public int cost;
 
     private float fixTimer = 0; // Timer for fixing
     private int fixesNeeded; // 0 -> least broken/no fixing necessary
@@ -47,5 +48,10 @@ public class House : MonoBehaviour
     public int getFixesNeeded()
     {
         return fixesNeeded;
+    }
+
+    public int getCost()
+    {
+        return cost;
     }
 }

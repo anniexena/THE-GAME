@@ -15,7 +15,7 @@ public class Seed : MonoBehaviour
     public float seedSpawnWaitLow; // Lowest possible time spent before spawning seeds
     public float seedSpawnWaitHigh; // Highest possible time spent before spawning seeds
     public float cutWait; // Time needed to cut down tree
-    public int seedsLow; // Lowest possible number of seeds to spawn
+    public int woodHigh; // Highest possible number of wood to add each phase 
     public int seedsHigh; // Highest possible number of seeds to spawn
     public float seedSpawnXoffset; // x-offset for spawning seeds
     public float seedSpawnYoffset; // y-offset for spawning seeds
@@ -44,22 +44,19 @@ public class Seed : MonoBehaviour
         // Sets inventory to correct GameObject
         playerInventory = GameObject.FindGameObjectWithTag("PlayerInventory").GetComponent<Inventory>();
 
-        print("seed spawned");
-        print(playerInventory);
-
         // Sets sprite and colliders
         gameObject.GetComponent<SpriteRenderer>().sprite = plantSprites[phase];
         updateColliders();
 
         // Determines seeds and wait time for spawning them
-        seeds = Random.Range(seedsLow, seedsHigh);
+        seeds = Random.Range(0, seedsHigh);
         seedSpawnWait = Random.Range(seedSpawnWaitLow, seedSpawnWaitHigh);
 
         // Determines time spent in the first phase
         growWait = Random.Range(growWaitLow, growWaitHigh);
 
         // Determines wood drop based on starting phase
-        for (int i = 0; i < phase; i++) { wood += Random.Range(1, 2); }
+        for (int i = 0; i < phase; i++) { wood += Random.Range(1, woodHigh); }
 
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
     }
@@ -77,7 +74,7 @@ public class Seed : MonoBehaviour
             if (phase < plantSprites.Length - 1)
             {
                 setPhase(phase + 1);
-                wood += Random.Range(1, 2);
+                wood += Random.Range(1, woodHigh);
 
                 //Debug.Log("Plant growing up to phase " + phase + "!");
 
@@ -116,7 +113,10 @@ public class Seed : MonoBehaviour
                 cutTimer = 0;
 
                 growTimer -= cutTimer; // Prevents phase change during cutting
+                print("spread yet? " + spread);
+                print("what phase? " + phase);
                 if (!spread && phase == MATURITY) {
+                    print("adding seeds " + seeds);
                     playerInventory.addSeeds(seedName, seeds); // Plant would have seeds we could collect
                 }
                 playerInventory.addWood(seedName, wood);
@@ -205,7 +205,5 @@ public class Seed : MonoBehaviour
                 }
             }
         }
-    
-       //Debug.Log("Plant Expected: " + seeds + ", Plant Actual: " + spawn);
     }
 }

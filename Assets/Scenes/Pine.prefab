@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: cutWait
-      value: 2.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: seedName
@@ -21,16 +21,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
+      propertyPath: woodHigh
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: seedsHigh
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: growWaitLow
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: growWaitHigh
-      value: 25
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: seedSpawnWaitLow
@@ -38,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: seedSpawnXoffset
-      value: 25
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: seedSpawnYoffset
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: seedSpawnWaitHigh
