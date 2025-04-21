@@ -3,57 +3,28 @@ using UnityEditor.Rendering;
 
 public class TownHealth : MonoBehaviour
 {
-    private int health;
-
-    private bool changeTimerStart = false;
-    private float changeTimer = 0;
-    private int changeRate = 3; // How quickly to be adding/removing people
-
-    public GameObject person;
+    private float healthyHouses;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        healthyHouses = GameObject.FindGameObjectsWithTag("House").Length;
     }
 
     // Update is called once per frame
     void Update()
     {
-        int peopleActual = GameObject.FindGameObjectsWithTag("People").Length;
-        int healthyHouses = GameObject.FindGameObjectsWithTag("House").Length;
-        int peopleExpected = Mathf.FloorToInt(healthyHouses * 2.5f); // 3 houses = 7 people
-
-        if (!changeTimerStart && peopleActual != peopleExpected)
+        GameObject[] houses = GameObject.FindGameObjectsWithTag("House");
+        for (int i = 0; i < houses.Length; i++)
         {
-            changeTimerStart = true;
+            House house = houses[i].GetComponent<House>();
+            if (house.getFixesNeeded() == 2) { healthyHouses--; }
+            else if (house.getFixesNeeded() == 1) { healthyHouses -= 0.5f; }
         }
 
-        if (changeTimerStart)
-        {
-            changeTimer += Time.deltaTime;
-            if (changeTimer > changeRate)
-            {
-                // Reset timer variables
-                changeTimerStart = false;
-                changeTimer = 0;
-                revise(peopleActual, peopleExpected);
-            }
-        }
     }
-
-
-    void revise(int actual, int expected)
+    public float getHealth()
     {
-        if (actual < expected)
-        {
-            Instantiate(person, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Quaternion.identity);
-        }
-        else
-        {
-            GameObject target = GameObject.Find("People");
-            Destroy(target);
-        }
-
+        return healthyHouses;
     }
 }

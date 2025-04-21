@@ -27,7 +27,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] public GameObject nextButton;
     public bool isFollowing;
     private Player_Stats playerStats;
-    private int sustainability_level;
+    private float sustainability_level;
 
     private void Awake()
     {
@@ -88,10 +88,65 @@ public class DialogueManager : MonoBehaviour
         }
         //END NEW
 
-        // Update sustainability level
-        UpdateSL();
+        // Update sustainability levels
+        UpdateStates();
 
         ContinueStory();
+    }
+
+    private void UpdateStates()
+    {
+        UpdateSL();
+        UpdateTH();
+        UpdateSH();
+    }
+
+    private void UpdateTH()
+    {
+        GameObject player = GameObject.Find("Player");
+        playerStats = player.GetComponent<Player_Stats>();
+        float TH = playerStats.getTH();
+        if (currentStory.variablesState["town_health"] != null)
+        {
+            currentStory.variablesState["town_health"] = TH;
+        }
+    }
+
+    private void UpdateSH()
+    {
+        GameObject player = GameObject.Find("Player");
+        playerStats = player.GetComponent<Player_Stats>();
+        float FH = playerStats.getFH();
+        if (currentStory.variablesState["forest_health"] != null)
+        {
+            currentStory.variablesState["forest_health"] = FH;
+        }
+    }
+
+    private void UpdateSL()
+    {
+        // Get + set sustainability level
+        GameObject player = GameObject.Find("Player");
+        if (player == null)
+        {
+            Debug.LogError("Player object could not be found!");
+        }
+        else
+        {
+            playerStats = player.GetComponent<Player_Stats>();
+            if (playerStats == null)
+            {
+                Debug.LogError("Player stats script could not be found!");
+            }
+            else
+            {
+                sustainability_level = playerStats.getSL();
+                if (currentStory.variablesState["sustainability_lvl"] != null)
+                {
+                    currentStory.variablesState["sustainability_lvl"] = sustainability_level;
+                }
+            }
+        }
     }
 
     private void UpdateHS(NPC npc)
@@ -172,32 +227,6 @@ public class DialogueManager : MonoBehaviour
         currentStory.ChooseChoiceIndex(index);
         nextButton.SetActive(true);
         ContinueStory();
-    }
-
-    private void UpdateSL()
-    {
-        // Get + set sustainability level
-        GameObject player = GameObject.Find("Player");
-        if (player == null)
-        {
-            Debug.LogError("Player object could not be found!");
-        }
-        else
-        {
-            playerStats = player.GetComponent<Player_Stats>();
-            if (playerStats == null)
-            {
-                Debug.LogError("Player stats script could not be found!");
-            }
-            else
-            {
-                sustainability_level = playerStats.getSL();
-                if (currentStory.variablesState["sustainability_lvl"] != null)
-                {
-                    currentStory.variablesState["sustainability_lvl"] = sustainability_level;
-                }
-            }
-        }
     }
 
     public static DialogueManager GetInstance()

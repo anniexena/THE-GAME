@@ -8,6 +8,7 @@ public class ForestHealth : MonoBehaviour
     private bool changeTimerStart = false;
     private float changeTimer = 0;
     private int changeRate = 3; // How quickly to be adding/removing animal
+    private const int TERMINAL = 5;
 
     public GameObject[] Animals;
 
@@ -26,13 +27,10 @@ public class ForestHealth : MonoBehaviour
         for (int i = 0; i < plants.Length; i++)
         {
             Seed plant = plants[i].GetComponent<Seed>();
-            if (plant.getPhase() < 5)
-            {
-                healthyPlants++;
-            }
+            if (plant.getPhase() < TERMINAL) { healthyPlants++; }
         }
 
-        int animalsExpected = Mathf.FloorToInt(healthyPlants * 2.5f); // 3 plants = 7 animal
+        int animalsExpected = Mathf.FloorToInt(healthyPlants * 1.2f); // 7 plants = 8 animals
 
         if (!changeTimerStart && animalsActual != animalsExpected)
         {
@@ -65,6 +63,11 @@ public class ForestHealth : MonoBehaviour
             GameObject target = GameObject.Find("Animal");
             Destroy(target);
         }
+    }
 
+    public float getHealth()
+    {
+        float animalsActual = GameObject.FindGameObjectsWithTag("Animal").Length / 5;
+        return Mathf.Min(animalsActual, 8f);
     }
 }

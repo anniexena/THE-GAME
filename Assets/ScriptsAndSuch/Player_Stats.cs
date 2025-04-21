@@ -3,16 +3,13 @@ using UnityEngine;
 // Class for all stats of the player like inventory, sustainability level, etc...
 public class Player_Stats : MonoBehaviour
 {
-    [SerializeField] int sustainability_level;
+    public TownHealth TH;
+    public ForestHealth FH;
+
     // ! NOTE: this shouldnt be a serialized field, this is just for testing ! //
 
-    public int getSL()
-    {
-        return sustainability_level;
-    }
+    public float getSL() { return (FH.getHealth() + TH.getHealth()) / 2f; } // (0-8)
 
-    public void setSL(int sl)
-    {
-        sustainability_level = sl;
-    }
+    public float getTH() { return (TH.getHealth()); } // (0-8)
+    public float getFH() { return (FH.getHealth()); } // (0-8)
 }
