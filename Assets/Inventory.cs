@@ -106,7 +106,6 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
-
     }
 
     public int getWood(string woodType)

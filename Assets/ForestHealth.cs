@@ -9,7 +9,7 @@ public class ForestHealth : MonoBehaviour
     private float changeTimer = 0;
     private int changeRate = 3; // How quickly to be adding/removing animal
 
-    public GameObject animal;
+    public GameObject[] Animals;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,7 +32,7 @@ public class ForestHealth : MonoBehaviour
             }
         }
 
-        int animalsExpected = Mathf.FloorToInt(healthyPlants * 2.5f); // 3 houses = 7 animal
+        int animalsExpected = Mathf.FloorToInt(healthyPlants * 2.5f); // 3 plants = 7 animal
 
         if (!changeTimerStart && animalsActual != animalsExpected)
         {
@@ -57,7 +57,8 @@ public class ForestHealth : MonoBehaviour
     {
         if (actual < expected)
         {
-            Instantiate(animal, new Vector3(Random.Range(-250, 250), Random.Range(-10, 10), 0), Quaternion.identity);
+            int animal = Random.Range(0, Animals.Length);
+            Instantiate(Animals[animal], new Vector3(Random.Range(-250, 250), Random.Range(-10, 10), 0), Quaternion.identity);
         }
         else
         {
