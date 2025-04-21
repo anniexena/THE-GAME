@@ -99,7 +99,7 @@ public class Inventory : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && getWood(woodIndex) > HOUSE_COST)
             {
                 House house = hit.collider.GetComponent<House>();
-                if (house.woodType == woodIndex)
+                if (house.woodType == woodIndex && house.getFixesNeeded() > 0)
                 {
                     woodStoring[woodIndex] -= HOUSE_COST;
                     house.fix();
