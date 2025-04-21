@@ -19,6 +19,7 @@ public class Seed : MonoBehaviour
     public int seedsHigh; // Highest possible number of seeds to spawn
     public float seedSpawnXoffset; // x-offset for spawning seeds
     public float seedSpawnYoffset; // y-offset for spawning seeds
+    public string seedName;
 
     // Properties to be updated based on changeable values
     private int seeds;
@@ -42,6 +43,9 @@ public class Seed : MonoBehaviour
     {
         // Sets inventory to correct GameObject
         playerInventory = GameObject.FindGameObjectWithTag("PlayerInventory").GetComponent<Inventory>();
+
+        print("seed spawned");
+        print(playerInventory);
 
         // Sets sprite and colliders
         gameObject.GetComponent<SpriteRenderer>().sprite = plantSprites[phase];
@@ -112,9 +116,10 @@ public class Seed : MonoBehaviour
                 cutTimer = 0;
 
                 growTimer -= cutTimer; // Prevents phase change during cutting
-                if (!spread && phase == MATURITY) { playerInventory.addSeeds(seeds); } // Plant would have seeds we could collect
-                playerInventory.addWood(wood);
-                //Debug.Log("Plant cut down");
+                if (!spread && phase == MATURITY) {
+                    playerInventory.addSeeds(seedName, seeds); // Plant would have seeds we could collect
+                }
+                playerInventory.addWood(seedName, wood);
                 Destroy(gameObject);
             }
         }
@@ -123,11 +128,7 @@ public class Seed : MonoBehaviour
     // If we left-click on the plant, we start cutting it down
     private void OnMouseDown()
     {
-        if (phase > 0)
-        {
-            //Debug.Log("Cutting Plant down");
-            cutTimerStart = true;
-        }
+        if (phase > 0) { cutTimerStart = true; }
     }
 
     // Updates collider based on sprite
@@ -205,6 +206,6 @@ public class Seed : MonoBehaviour
             }
         }
     
-       Debug.Log("Plant Expected: " + seeds + ", Plant Actual: " + spawn);
+       //Debug.Log("Plant Expected: " + seeds + ", Plant Actual: " + spawn);
     }
 }

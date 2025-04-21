@@ -4,10 +4,14 @@ VAR houseBroken = false
 
 === main ===
 Hello! I am NPC.
-{houseBroken:
-    My house needs repairs!!
+{houseBroken == 0:
+    This world is beautiful, and my house is good
 - else:
-    My house is spectacular
+    {houseBroken == 1:
+        My house is starting to get worse...
+    -else:
+        Please help, my house is falling apart!
+    }
 }
     -> end
 

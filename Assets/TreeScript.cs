@@ -58,8 +58,8 @@ public class TreeScript : MonoBehaviour
                 cutTimerStart = false;
                 cutTimer = 0;
 
-                playerInventory.addSeeds(seeds);
-                playerInventory.addWood(wood);
+                playerInventory.addSeeds(gameObject.name, seeds);
+                playerInventory.addWood(gameObject.name, wood);
                 Destroy(gameObject);
             }
         }

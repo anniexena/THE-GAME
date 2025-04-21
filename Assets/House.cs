@@ -3,47 +3,49 @@ using UnityEngine.VFX;
 
 public class House : MonoBehaviour
 {
+    public float fixWaitLow; // Lowest time before house needs to be fixed
+    public float fixWaitHigh; // Highest time before house needs to be fixed
+    public Sprite[] houseStates;
+    public string woodType;
+
     private float fixTimer = 0; // Timer for fixing
-    public float fixWait; // Time before it needs to be fixed
-    public bool needsFixing = false;
-    public Sprite broken;
-    public Sprite normal;
+    private int fixesNeeded; // 0 -> least broken/no fixing necessary
+    private float fixWait;
+    private const int MAXSTATES = 3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        fixWait = Random.Range(10, 30);
+        fixesNeeded = 0;
+        fixWait = Random.Range(fixWaitLow, fixWaitHigh);
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!needsFixing)
+        fixTimer += Time.deltaTime;
+        if (fixTimer > fixWait)
         {
-            fixTimer += Time.deltaTime;
-            if (fixTimer > fixWait)
-            {
-                fixTimer = 0;
-                needsFixing = true;
-                GetComponent<SpriteRenderer>().sprite = broken;
-            }
+            fixTimer = 0;
+            fixesNeeded = Mathf.Min(MAXSTATES - 1, fixesNeeded + 1);
+            GetComponent<SpriteRenderer>().sprite = houseStates[fixesNeeded];
         }
     }
 
     public void fix()
     {
-        if (needsFixing)
+        if (fixesNeeded > 0)
         {
-            fixWait = Random.Range(10, 30);
+            fixWait = Random.Range(fixWaitLow, fixWaitHigh);
             fixTimer = 0;
-            needsFixing = false;
-            GetComponent<SpriteRenderer>().sprite = normal;
+            fixesNeeded = Mathf.Max(0, fixesNeeded - 1);
+            GetComponent<SpriteRenderer>().sprite = houseStates[fixesNeeded];
         }
     }
 
-    public bool getNeedsFixing()
+    public int getFixesNeeded()
     {
-        return needsFixing;
+        return fixesNeeded;
     }
 }

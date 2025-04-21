@@ -96,7 +96,7 @@ public class DialogueManager : MonoBehaviour
 
     private void UpdateHS(NPC npc)
     {
-        bool houseBroken = npc.getHouseState();
+        int houseBroken = npc.getHouseState();
         if (currentStory.variablesState["houseBroken"] != null)
         {
             currentStory.variablesState["houseBroken"] = houseBroken;

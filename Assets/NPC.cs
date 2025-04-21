@@ -15,9 +15,9 @@ public class NPC : MonoBehaviour
     {
     }
 
-    public bool getHouseState()
+    public int getHouseState()
     {
-        return house.getNeedsFixing();
+        return house.getFixesNeeded();
     }
 
 }
