@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
   m_Name: another grass animation
   m_EditorClassIdentifier: 
-  m_AnimatedSprites: []
+  m_AnimatedSprites:
+  - {fileID: 284109843, guid: f4506978b6cf0114d984cd0699495c60, type: 3}
+  - {fileID: 600484321, guid: f4506978b6cf0114d984cd0699495c60, type: 3}
+  - {fileID: 1875200734, guid: f4506978b6cf0114d984cd0699495c60, type: 3}
+  - {fileID: -1762053844, guid: f4506978b6cf0114d984cd0699495c60, type: 3}
+  - {fileID: 1019827773, guid: f4506978b6cf0114d984cd0699495c60, type: 3}
+  - {fileID: 2136519132, guid: f4506978b6cf0114d984cd0699495c60, type: 3}
+  - {fileID: 555380336, guid: f4506978b6cf0114d984cd0699495c60, type: 3}
+  - {fileID: -370415449, guid: f4506978b6cf0114d984cd0699495c60, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0
