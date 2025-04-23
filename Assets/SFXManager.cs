@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SFXManager : MonoBehaviour
 {
@@ -22,6 +23,22 @@ public class SFXManager : MonoBehaviour
 
         // Destroy after done playing
         float length = audioSource.clip.length;
+        Destroy(audioSource.gameObject, length);
+    }
+
+    public IEnumerator PlaySFXClipAndWait(AudioClip audioClip, Transform spawnTransform, float volume)
+    {
+        // Spawn audiosource
+        AudioSource audioSource = Instantiate(SFX, spawnTransform.position, Quaternion.identity);
+
+        // Assign necessary values + play audio
+        audioSource.clip = audioClip;
+        audioSource.volume = volume;
+        audioSource.Play();
+
+        // Destroy after done playing
+        float length = audioSource.clip.length;
+        yield return new WaitForSeconds(length);
         Destroy(audioSource.gameObject, length);
     }
 }

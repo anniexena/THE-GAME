@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,6 +19,9 @@ public class Inventory : MonoBehaviour
     private string woodIndex;
 
     private Dictionary<string, GameObject> seedToSpawn;
+
+    private bool alreadyFixing = false;
+    public AudioClip fixAudio;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -101,16 +105,25 @@ public class Inventory : MonoBehaviour
         else if (hit.collider.gameObject.tag == "House")
         {
             House house = hit.collider.GetComponent<House>();
-            if (Input.GetMouseButtonDown(0) && getWood(woodIndex) > house.getCost())
-            {
+            print("Mouse: " + Input.GetMouseButtonDown(0));
+            print("Fixing: " + !alreadyFixing);
+            if (Input.GetMouseButtonDown(0) && !alreadyFixing) {
                 // if (house.woodType == woodIndex && house.getFixesNeeded() > 0)
-                if (house.getFixesNeeded() > 0)
+                if (house.getFixesNeeded() > 0 && getWood(woodIndex) > house.getCost())
                 {
+                    alreadyFixing = true;
                     woodStoring[woodIndex] -= house.getCost();
-                    house.fix();
+                    StartCoroutine(fixHouse(house));
                 }
             }
         }
+    }
+
+    private IEnumerator fixHouse(House house)
+    {
+        yield return StartCoroutine(SFXManager.instance.PlaySFXClipAndWait(fixAudio, transform, 1f));
+        house.fix();
+        alreadyFixing = false;
     }
 
     public int getWood(string woodType)
