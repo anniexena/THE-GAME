@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
 
     private bool alreadyFixing = false;
     public AudioClip fixAudio;
+    public AudioClip pickupAudio;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -146,6 +147,7 @@ public class Inventory : MonoBehaviour
 
     public void addSeeds(string seedType, int toAdd)
     {
+        SFXManager.instance.PlaySFXClip(pickupAudio, transform, 1f);
         if (!seedsStoring.ContainsKey(seedType))
         {
             seedsStoring[seedType] = toAdd;
@@ -158,6 +160,7 @@ public class Inventory : MonoBehaviour
 
     public void addWood(string woodType, int toAdd)
     {
+        SFXManager.instance.PlaySFXClip(pickupAudio, transform, 1f);
         if (!woodStoring.ContainsKey(woodType))
         {
             woodStoring[woodType] = toAdd;
