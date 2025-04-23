@@ -9,8 +9,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private Animator animator;
     private bool audioPlaying = false;
     public AudioClip runAudio;
-    private SFXManager running = SFXManager.instance;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,7 +47,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
     private IEnumerator playRunAudio() {
-        yield return StartCoroutine(running.PlaySFXClipAndWait(runAudio, transform, 1f));
+        yield return StartCoroutine(SFXManager.instance.PlaySFXClipAndWait(runAudio, transform, 1f));
         audioPlaying = false;
     }
 
