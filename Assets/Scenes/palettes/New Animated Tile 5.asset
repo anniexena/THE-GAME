@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: New Animated Tile 5
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 150407468, guid: 2d4fba5653f5ddf4bbdbd2c1879d0b60, type: 3}
-  - {fileID: -391249519, guid: 2d4fba5653f5ddf4bbdbd2c1879d0b60, type: 3}
+  - {fileID: -987833614, guid: 24a2230d6355e0244b38169feb52e1be, type: 3}
+  - {fileID: -614105467, guid: 24a2230d6355e0244b38169feb52e1be, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0
