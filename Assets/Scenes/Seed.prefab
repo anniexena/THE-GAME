@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9487f4043865846ae6e31410400951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plantSprites: []
   playerInventory: {fileID: 0}
   phase: 0
   growWaitLow: 0
@@ -107,5 +108,10 @@ MonoBehaviour:
   seedSpawnWaitLow: 0
   seedSpawnWaitHigh: 0
   cutWait: 0
-  seedsLow: 0
+  woodHigh: 0
   seedsHigh: 0
+  seedSpawnXoffset: 0
+  seedSpawnYoffset: 0
+  seedName: 
+  axeAudio: {fileID: 8300000, guid: 7cdcee84e7784ef419f3d7104c585636, type: 3}
+  treeFallingAudio: {fileID: 8300000, guid: 86c6c74ca610a4542930266306682e25, type: 3}

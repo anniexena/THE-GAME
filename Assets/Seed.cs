@@ -4,6 +4,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.U2D;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using static UnityEditor.PlayerSettings;
+using System.Collections;
 
 public class Seed : MonoBehaviour
 {
@@ -38,7 +39,8 @@ public class Seed : MonoBehaviour
     private float cutTimer = 0; // Timer for cutting
     private float seedSpawnTimer = 0; // Timer for growing
     private bool cutTimerStart = false; // Whether we've started cutting or not
-
+    public AudioClip axeAudio;
+    public AudioClip treeFallingAudio;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -111,24 +113,21 @@ public class Seed : MonoBehaviour
         // If we've started cutting, wait until timer goes off, then destroy the plant
         if (cutTimerStart)
         {
-            cutTimer += Time.deltaTime;
-            if (cutTimer > cutWait)
-            {
-                // Reset timer variables
-                cutTimerStart = false;
-                cutTimer = 0;
-
-                growTimer -= cutTimer; // Prevents phase change during cutting
-                print("spread yet? " + spread);
-                print("what phase? " + phase);
-                if (!spread && phase == MATURITY) {
-                    print("adding seeds " + seeds);
-                    playerInventory.addSeeds(seedName, seeds); // Plant would have seeds we could collect
-                }
-                playerInventory.addWood(seedName, wood);
-                Destroy(gameObject);
-            }
+            cutTimerStart = false;
+            StartCoroutine(cutTree());        
         }
+    }
+
+    private IEnumerator cutTree()
+    {
+        SFXManager.instance.PlaySFXClip(treeFallingAudio, transform, 0.5f);
+        yield return StartCoroutine(SFXManager.instance.PlaySFXClipAndWait(axeAudio, transform, 1f));
+        if (!spread && phase == MATURITY) {
+            print("adding seeds " + seeds);
+            playerInventory.addSeeds(seedName, seeds); // Plant would have seeds we could collect
+        }
+        playerInventory.addWood(seedName, wood);
+        Destroy(gameObject);
     }
 
     // If we left-click on the plant, we start cutting it down
