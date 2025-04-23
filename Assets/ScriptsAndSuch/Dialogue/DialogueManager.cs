@@ -82,9 +82,11 @@ public class DialogueManager : MonoBehaviour
         }
 
         //NEW
-        if (parent.GetComponent<NPC>() != null)
+        NPC npc = parent.GetComponent<NPC>();
+        if (npc != null)
         {
-            UpdateHS(parent.GetComponent<NPC>());
+            UpdateHC(npc);
+            UpdateHS(npc);
         }
         //END NEW
 
@@ -155,6 +157,15 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.variablesState["houseBroken"] != null)
         {
             currentStory.variablesState["houseBroken"] = houseBroken;
+        }
+    }
+
+    private void UpdateHC(NPC npc)
+    {
+        int houseCost = npc.getHouseCost();
+        if (currentStory.variablesState["houseCost"] != null)
+        {
+            currentStory.variablesState["houseCost"] = houseCost;
         }
     }
 

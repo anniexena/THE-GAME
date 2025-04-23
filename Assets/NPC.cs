@@ -20,4 +20,9 @@ public class NPC : MonoBehaviour
         return house.getFixesNeeded();
     }
 
+    public int getHouseCost()
+    {
+        return house.getFixesNeeded() * house.getCost();
+    }
+
 }

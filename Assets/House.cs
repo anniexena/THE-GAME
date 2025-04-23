@@ -17,7 +17,8 @@ public class House : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        fixesNeeded = 0;
+        fixesNeeded = 1;
+        GetComponent<SpriteRenderer>().sprite = houseStates[fixesNeeded];
         fixWait = Random.Range(fixWaitLow, fixWaitHigh);
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
     }

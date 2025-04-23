@@ -31,6 +31,11 @@ public class Inventory : MonoBehaviour
         seedToSpawn["Birch"] = BirchSeed;
         seedToSpawn["Pine"] = PineSeed;
         seedToSpawn["Cherry"] = CherrySeed;
+
+        woodStoring["Birch"] = 50;
+        woodStoring["Cherry"] = 50;
+        woodStoring["Pine"] = 50;
+
     }
 
     // Update is called once per frame
@@ -98,7 +103,8 @@ public class Inventory : MonoBehaviour
             House house = hit.collider.GetComponent<House>();
             if (Input.GetMouseButtonDown(0) && getWood(woodIndex) > house.getCost())
             {
-                if (house.woodType == woodIndex && house.getFixesNeeded() > 0)
+                // if (house.woodType == woodIndex && house.getFixesNeeded() > 0)
+                if (house.getFixesNeeded() > 0)
                 {
                     woodStoring[woodIndex] -= house.getCost();
                     house.fix();

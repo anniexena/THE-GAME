@@ -187,7 +187,6 @@ public class Seed : MonoBehaviour
     // Spawns the seeds
     void spawn()
     {
-        print("Attempting to spawn " + seeds);
         int spawn = 0;
         for (int i = 0; i < seeds; i++)
         {
@@ -217,7 +216,6 @@ public class Seed : MonoBehaviour
                 }
             }
         }
-        print("Spawned " + spawn);
     }
 
     bool isValidTile(Vector3 pos)

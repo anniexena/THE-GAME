@@ -1,4 +1,5 @@
-VAR houseBroken = false
+VAR houseBroken = 0
+VAR houseCost = 0
 VAR town_health = 0
 VAR forest_health = 0
 
@@ -26,10 +27,10 @@ Hello there! It is good to run into you...
     And the forest is dying! There are few trees and animals left in our world!
 -else:
     {forest_health < 4:
-        for the forest is slowly becoming dead, planting seeds for animals would be best
+        Also, the forest is slowly becoming dead, planting seeds for animals would be best.
     -else:
         {forest_health < 6:
-            for the forest has become quite beautiful!
+            And I must say the forest has become quite beautiful!
             -else:
                 for the forest is filled with life! I feel that smooth sun beautifully
         }
@@ -42,9 +43,11 @@ Hello there! It is good to run into you...
     Finally, you've done good on your duties and helped maintain my house, many thanks!
 - else:
     {houseBroken == 1:
-        You've even helped maintain my house, thank you. Though I could definitely use some repairs...
+        ~ temp msg = "You've even helped maintain my house, though I could definitely use " + houseCost + " wood for repairs..."
+        {msg}
     - else:
-        Lastly, I must ask you to please help and give me the wood I need for my house!
+        ~ temp msg2 = "Lastly, I must ask you to please help and give me the " + houseCost + " wood I need for my house!"
+        {msg2}
     }
 }
     -> end
