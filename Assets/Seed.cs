@@ -1,5 +1,6 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.U2D;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using static UnityEditor.PlayerSettings;
@@ -19,7 +20,8 @@ public class Seed : MonoBehaviour
     public int seedsHigh; // Highest possible number of seeds to spawn
     public float seedSpawnXoffset; // x-offset for spawning seeds
     public float seedSpawnYoffset; // y-offset for spawning seeds
-    public string seedName;
+    public string seedName; // Type of seed to spawn
+    private Tilemap[] invalidSpawnTiles; // Invalid spawn tiles
 
     // Properties to be updated based on changeable values
     private int seeds;
@@ -57,6 +59,10 @@ public class Seed : MonoBehaviour
 
         // Determines wood drop based on starting phase
         for (int i = 0; i < phase; i++) { wood += Random.Range(1, woodHigh); }
+
+        // Sets invalid tiles to spawn on
+        InvalidSpawnTiles invalidSpawns = GameObject.Find("InvalidSpawnTiles").GetComponent<InvalidSpawnTiles>();
+        invalidSpawnTiles = invalidSpawns.invalidSpawnTiles;
 
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
     }
@@ -181,6 +187,7 @@ public class Seed : MonoBehaviour
     // Spawns the seeds
     void spawn()
     {
+        print("Attempting to spawn " + seeds);
         int spawn = 0;
         for (int i = 0; i < seeds; i++)
         {
@@ -194,9 +201,14 @@ public class Seed : MonoBehaviour
                 Vector3 spawnPos = new Vector3(Random.Range(low_x, high_x),
                     Random.Range(low_y, high_y), 0);
 
+                // Will be used to ensure seeds don't spawn on top of other objects
                 float checkRadius = 4.5f; // Adjust this based on your seed size
                 Collider2D hit = Physics2D.OverlapCircle(spawnPos, checkRadius);
-                if (hit == null)
+
+                // Will be used to ensure seeds spawn only on grass
+                bool validTile = isValidTile(spawnPos);
+
+                if (hit == null && validTile)
                 {
                     GameObject newSeed = Instantiate(gameObject, spawnPos, transform.rotation);
                     newSeed.GetComponent<Seed>().setPhase(0); // Ensure it starts as a seed
@@ -205,5 +217,17 @@ public class Seed : MonoBehaviour
                 }
             }
         }
+        print("Spawned " + spawn);
+    }
+
+    bool isValidTile(Vector3 pos)
+    {
+        foreach (Tilemap tilemap in invalidSpawnTiles)
+        {
+            Vector3Int cellPos = tilemap.WorldToCell(pos);
+            TileBase tileAtPos = tilemap.GetTile(cellPos);
+            if (tileAtPos != null) { return false; }
+        }
+        return true;
     }
 }
