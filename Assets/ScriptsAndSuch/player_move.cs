@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
@@ -6,6 +7,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private Rigidbody2D rigidBody;
     private Vector3 change;
     private Animator animator;
+    private bool audioPlaying = false;
+    public AudioClip runAudio;
+    private SFXManager running = SFXManager.instance;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +33,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
         if (change != Vector3.zero) {
+            if (!audioPlaying) {
+                audioPlaying = true;
+                StartCoroutine(playRunAudio());
+            }
             MoveCharacter();
             animator.SetFloat("Move_X", change.x);
             animator.SetFloat("Move_Y", change.y);
@@ -38,6 +46,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
         else {
             animator.SetBool("Moving", false);
         }
+    }
+
+    private IEnumerator playRunAudio() {
+        yield return StartCoroutine(running.PlaySFXClipAndWait(runAudio, transform, 1f));
+        audioPlaying = false;
     }
 
     void MoveCharacter() {
