@@ -4,11 +4,22 @@ using System.Collections;
 public class SFXManager : MonoBehaviour
 {
     public static SFXManager instance;
-    [SerializeField] private AudioSource SFX;
+    public AudioSource SFX;
+    public AudioClip ambianceAudio;
 
     private void Awake()
     {
         if (instance == null) { instance = this; }
+        playAmbiance(ambianceAudio, transform, 1f);
+    }
+
+    private void playAmbiance(AudioClip audioClip, Transform spawnTransform, float volume)
+    {
+        AudioSource audioSource = Instantiate(SFX, spawnTransform.position, Quaternion.identity);
+        audioSource.clip = audioClip;
+        audioSource.volume = volume;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 
     public void PlaySFXClip(AudioClip audioClip, Transform spawnTransform, float volume)

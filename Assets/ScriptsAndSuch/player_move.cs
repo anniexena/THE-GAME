@@ -9,6 +9,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private Animator animator;
     private bool audioPlaying = false;
     public AudioClip runAudio;
+    private AudioSource runAudioSource;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +25,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (DialogueManager.GetInstance().dialogueIsPlaying)
         {
             animator.SetBool("Moving", false);
+            stopRunAudio();
             return;
         }
 
@@ -31,10 +33,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
         if (change != Vector3.zero) {
-            if (!audioPlaying) {
-                audioPlaying = true;
-                StartCoroutine(playRunAudio());
-            }
+            playRunAudio();
             MoveCharacter();
             animator.SetFloat("Move_X", change.x);
             animator.SetFloat("Move_Y", change.y);
@@ -43,12 +42,30 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
         else {
             animator.SetBool("Moving", false);
+            stopRunAudio();
         }
     }
 
-    private IEnumerator playRunAudio() {
-        yield return StartCoroutine(SFXManager.instance.PlaySFXClipAndWait(runAudio, transform, 1f));
-        audioPlaying = false;
+    private void playRunAudio()
+    {
+        if (runAudioSource == null)
+        {
+            runAudioSource = Instantiate(SFXManager.instance.SFX, transform.position, Quaternion.identity);
+            runAudioSource.clip = runAudio;
+            runAudioSource.volume = 1f;
+            runAudioSource.loop = true;
+            runAudioSource.Play();
+        }
+    }
+
+    private void stopRunAudio()
+    {
+        if (runAudioSource != null)
+        {
+            runAudioSource.Stop();
+            Destroy(runAudioSource.gameObject);
+            runAudioSource = null;
+        }
     }
 
     void MoveCharacter() {
