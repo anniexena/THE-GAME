@@ -11,16 +11,22 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public AudioClip runAudio;
     private AudioSource runAudioSource;
 
+    GameObject startMenu;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
+        startMenu = GameObject.Find("StartMenu");
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            startMenu.SetActive(true);
+        }
         // Don't let player move when dialogue is playing
         if (DialogueManager.GetInstance().dialogueIsPlaying)
         {

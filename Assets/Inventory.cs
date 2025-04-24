@@ -37,49 +37,15 @@ public class Inventory : MonoBehaviour
         seedToSpawn["Pine"] = PineSeed;
         seedToSpawn["Cherry"] = CherrySeed;
 
-        woodStoring["Birch"] = 50;
-        woodStoring["Cherry"] = 50;
-        woodStoring["Pine"] = 50;
+        woodStoring["Birch"] = 0;
+        woodStoring["Cherry"] = 0;
+        woodStoring["Pine"] = 0;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // TEMPORARY SELECTION
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            seedIndex = "Birch";
-            print("Curr Seeds: " + seedIndex);
-        }
-        else if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            seedIndex = "Pine";
-            print("Curr Seeds: " + seedIndex);
-        }
-        else if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            seedIndex = "Cherry";
-            print("Curr Seeds: " + seedIndex);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            woodIndex = "Birch";
-            print("Curr Wood: " + woodIndex);
-        }
-        else if (Input.GetKeyDown(KeyCode.Keypad5))
-        {
-            woodIndex = "Pine";
-            print("Curr Wood: " + woodIndex);
-        }
-        else if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            woodIndex = "Cherry";
-            print("Curr Wood: " + woodIndex);
-        }
-
-
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10f; // Set this to the distance from the camera
 
@@ -106,13 +72,14 @@ public class Inventory : MonoBehaviour
         else if (hit.collider.gameObject.tag == "House")
         {
             House house = hit.collider.GetComponent<House>();
-            print("Mouse: " + Input.GetMouseButtonDown(0));
-            print("Fixing: " + !alreadyFixing);
+            //print("Mouse: " + Input.GetMouseButtonDown(0));
+            //print("Fixing: " + !alreadyFixing);
             if (Input.GetMouseButtonDown(0) && !alreadyFixing) {
                 // if (house.woodType == woodIndex && house.getFixesNeeded() > 0)
                 if (house.getFixesNeeded() > 0 && getWood(woodIndex) > house.getCost())
                 {
                     alreadyFixing = true;
+                    Debug.Log(woodIndex);
                     woodStoring[woodIndex] -= house.getCost();
                     StartCoroutine(fixHouse(house));
                 }
@@ -168,6 +135,24 @@ public class Inventory : MonoBehaviour
         else
         {
             woodStoring[woodType] += toAdd;
+        }
+    }
+
+    public void SelectSeedIndex(string seedType)
+    {
+        if (seedToSpawn.ContainsKey(seedType))
+        {
+            seedIndex = seedType;
+            Debug.Log("Selected Seed: " + seedIndex);
+        }
+    }
+
+    public void SelectWoodIndex(string woodType)
+    {
+        if (woodStoring.ContainsKey(woodType))
+        {
+            woodIndex = woodType;
+            Debug.Log("Selected Wood: " + woodIndex);
         }
     }
 }
