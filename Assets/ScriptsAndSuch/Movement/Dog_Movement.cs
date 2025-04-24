@@ -6,7 +6,7 @@ public class Dog_Movement : MonoBehaviour
 
     public Animator animator;
     public Transform player;
-    private float stopDistance = 1f;
+    private float stopDistance = 7f;
     public bool isFollowing;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
