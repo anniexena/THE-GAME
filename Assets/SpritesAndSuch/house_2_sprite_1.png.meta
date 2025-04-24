@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3753a8719a1fec04681d9cfd226255de
+guid: c93d41b74d3399e4292997c767808042
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9152417161150985110
-    second: birchlog_0
+      213: -45500683905009715
+    second: house_2_sprite_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: birchlog_0
+      name: house_2_sprite_1_0
       rect:
         serializedVersion: 2
-        x: 145
-        y: 96
-        width: 399
-        height: 399
+        x: 0
+        y: 0
+        width: 739
+        height: 680
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 693f79e9aeae30f70800000000000000
-      internalID: 9152417161150985110
+      spriteID: dc7fdca7e595e5ff0800000000000000
+      internalID: -45500683905009715
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 77334df736d4b924580515568abf560a
+    spriteID: d681d820286717c4d9fd0cbf37d2c8bd
     internalID: 0
     vertices: []
     indices: 
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      birchlog_0: 9152417161150985110
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
