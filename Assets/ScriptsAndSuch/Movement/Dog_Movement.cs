@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Dog_Movement : MonoBehaviour
 {
@@ -58,4 +60,38 @@ public class Dog_Movement : MonoBehaviour
     void MoveDog() {
         transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
     }
+
+    // WILL BE THE DIGGING UP SEEDS PART
+    //// Mouse left-click
+    //private void OnMouseDown()
+    //{
+    //    Vector3 spawnPos = new Vector3(Random.Range(low_x, high_x),
+    //                Random.Range(low_y, high_y), 0);
+
+    //    // Will be used to ensure seeds don't spawn on top of other objects
+    //    float checkRadius = 4.5f; // Adjust this based on your seed size
+    //    Collider2D hit = Physics2D.OverlapCircle(spawnPos, checkRadius);
+
+    //    // Will be used to ensure seeds spawn only on grass
+    //    bool validTile = isValidTile(spawnPos);
+
+    //    if (hit == null && validTile)
+    //    {
+    //        GameObject newSeed = Instantiate(gameObject, spawnPos, transform.rotation);
+    //        newSeed.GetComponent<Seed>().setPhase(0); // Ensure it starts as a seed
+    //        spawn++;
+    //        break;
+    //    }
+    //}
+
+    //bool isValidTile(Vector3 pos)
+    //{
+    //    foreach (Tilemap tilemap in invalidSpawnTiles)
+    //    {
+    //        Vector3Int cellPos = tilemap.WorldToCell(pos);
+    //        TileBase tileAtPos = tilemap.GetTile(cellPos);
+    //        if (tileAtPos != null) { return false; }
+    //    }
+    //    return true;
+    //}
 }
