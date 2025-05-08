@@ -8,29 +8,47 @@ public class Dog_Movement : MonoBehaviour
 
     public Animator animator;
     public Transform player;
+    public Camera cam;
     private float stopDistance = 7f;
     public bool isFollowing;
+    private Tilemap[] invalidSpawnTiles; // Invalid spawn tiles
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
+        InvalidSpawnTiles invalidSpawns = GameObject.Find("InvalidSpawnTiles").GetComponent<InvalidSpawnTiles>();
+        invalidSpawnTiles = invalidSpawns.invalidSpawnTiles;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (!isFollowing)
-        //{
-        //    isFollowing = DialogueManager.GetInstance().isFollowing
-        //}
         if (DialogueManager.GetInstance().isFollowing) {
                 Follow();
-            }
+        }
         
         if (!DialogueManager.GetInstance().isFollowing) {
                 StopFollow();
+        }
+
+        if (Input.GetMouseButtonDown(0) && DialogueManager.GetInstance().isFollowing)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = 10f;
+
+            Vector3 worldPos = cam.ScreenToWorldPoint(mousePos);
+            worldPos.z = 0f;
+
+            // Will be used to ensure seeds spawn only on grass
+            bool validTile = isValidTile(worldPos);
+
+            if (validTile)
+            {
+                print("BARK BARK!"); //MAKE DOG MOVE TO POINT
             }
+        }
+
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -100);
     }
 
@@ -61,37 +79,14 @@ public class Dog_Movement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
     }
 
-    // WILL BE THE DIGGING UP SEEDS PART
-    //// Mouse left-click
-    //private void OnMouseDown()
-    //{
-    //    Vector3 spawnPos = new Vector3(Random.Range(low_x, high_x),
-    //                Random.Range(low_y, high_y), 0);
-
-    //    // Will be used to ensure seeds don't spawn on top of other objects
-    //    float checkRadius = 4.5f; // Adjust this based on your seed size
-    //    Collider2D hit = Physics2D.OverlapCircle(spawnPos, checkRadius);
-
-    //    // Will be used to ensure seeds spawn only on grass
-    //    bool validTile = isValidTile(spawnPos);
-
-    //    if (hit == null && validTile)
-    //    {
-    //        GameObject newSeed = Instantiate(gameObject, spawnPos, transform.rotation);
-    //        newSeed.GetComponent<Seed>().setPhase(0); // Ensure it starts as a seed
-    //        spawn++;
-    //        break;
-    //    }
-    //}
-
-    //bool isValidTile(Vector3 pos)
-    //{
-    //    foreach (Tilemap tilemap in invalidSpawnTiles)
-    //    {
-    //        Vector3Int cellPos = tilemap.WorldToCell(pos);
-    //        TileBase tileAtPos = tilemap.GetTile(cellPos);
-    //        if (tileAtPos != null) { return false; }
-    //    }
-    //    return true;
-    //}
+    bool isValidTile(Vector3 pos)
+    {
+        foreach (Tilemap tilemap in invalidSpawnTiles)
+        {
+            Vector3Int cellPos = tilemap.WorldToCell(pos);
+            TileBase tileAtPos = tilemap.GetTile(cellPos);
+            if (tileAtPos != null) { return false; }
+        }
+        return true;
+    }
 }
