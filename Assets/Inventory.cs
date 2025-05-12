@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
     private Tilemap[] invalidSpawnTiles; // Invalid spawn tiles
 
     [SerializeField] QuestManager questManager;
-
+    [SerializeField] PlayerMovement player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -73,6 +73,7 @@ public class Inventory : MonoBehaviour
                 print("we should be able to plant seeds");
                 GameObject newSeed = Instantiate(seedToSpawn[seedIndex], worldPos, Quaternion.identity);
                 seedsStoring[seedIndex] -= 1;
+                player.plantSeeds();
                 questManager.CheckQuestProgress(seedIndex);
             }
         }

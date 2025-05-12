@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rigidBody;
@@ -76,5 +76,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void MoveCharacter() {
         rigidBody.MovePosition(transform.position + change.normalized * speed * Time.deltaTime);
+    }
+
+    public void plantSeeds()
+    {
+        animator.SetBool("isDigging", true);
+        Debug.Log("Planting");
+        StartCoroutine(resetPlantingAnimation());
+    }
+
+    public IEnumerator resetPlantingAnimation()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("isDigging", false);
     }
 }
