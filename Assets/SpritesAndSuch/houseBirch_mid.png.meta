@@ -121,7 +121,7 @@ TextureImporter:
         width: 419
         height: 511
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      houseBirch_mid_0: -2949958623293009399
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
