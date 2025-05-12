@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -107,6 +108,9 @@ public class Dog_Movement : MonoBehaviour
 
     void Dig()
     {
+        animator.SetBool("isDigging", true);
+        StartCoroutine(PlayDigAnimation());
+
         digTimer += Time.deltaTime;
         if (digTimer > digWait)
         {
@@ -132,5 +136,10 @@ public class Dog_Movement : MonoBehaviour
         }
     }
 
+    private IEnumerator PlayDigAnimation()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("isDigging", false);
+    }
 
 }
