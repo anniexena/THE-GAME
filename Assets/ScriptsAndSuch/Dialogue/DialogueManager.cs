@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
     public bool dialogueIsPlaying { get; private set; }
     private static DialogueManager instance;
     [SerializeField] public GameObject nextButton;
-    public bool isFollowing;
+    [SerializeField] public Dog_Movement dog;
     private Player_Stats playerStats;
     private float sustainability_level;
 
@@ -204,7 +204,14 @@ public class DialogueManager : MonoBehaviour
         // Check for dog following
         if (currentStory.variablesState["followPlayer"] != null)
         {
-            isFollowing = (bool)currentStory.variablesState["followPlayer"];
+            dog.following = (bool)currentStory.variablesState["followPlayer"];
+            if (currentStory.variablesState["petting"] != null)
+            {
+                if ((bool)currentStory.variablesState["petting"])
+                {
+                    Debug.Log("Petting");
+                }
+            }
         }
 
         //Check for quest start
