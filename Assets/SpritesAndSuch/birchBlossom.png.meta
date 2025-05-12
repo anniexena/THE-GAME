@@ -121,7 +121,7 @@ TextureImporter:
         width: 247
         height: 354
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      birchBlossom_0: 7624275148815790231
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

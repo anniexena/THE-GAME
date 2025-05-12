@@ -13,25 +13,23 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cherrySeeds;
     [SerializeField] private TextMeshProUGUI cherryLogs;
 
+    [SerializeField] DialogueManager dialogueManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inventoryMenu.SetActive(false);
+        inventoryMenu.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
         // Check for user input to open inventory
-        if (Input.GetKeyDown(KeyCode.I)) {
-            if (inventoryMenu.activeInHierarchy) {
-                CloseMenu();
-            }
-            else {
-                OpenMenu();
-            }
-        }
-        setInventory();
+        if (dialogueManager.dialogueIsPlaying)
+            CloseMenu();
+        else
+            OpenMenu();
+            setInventory();
     }
 
     public void OpenMenu() {
@@ -49,8 +47,5 @@ public class InventoryUI : MonoBehaviour
         pineLogs.text = inventory.getWood("Pine") + "";
         cherrySeeds.text = inventory.getSeeds("Cherry") + "";
         cherryLogs.text = inventory.getWood("Cherry") + "";
-    }
-    public void testMenu() {
-        Debug.Log("Clicked close");
     }
 }
