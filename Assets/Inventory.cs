@@ -46,10 +46,10 @@ public class Inventory : MonoBehaviour
         // Starting values
         woodStoring["Birch"] = 0;
         woodStoring["Cherry"] = 0;
-        woodStoring["Pine"] = 100;
-        seedsStoring["Birch"] = 50;
-        seedsStoring["Cherry"] = 50;
-        seedsStoring["Pine"] = 50;
+        woodStoring["Pine"] = 0;
+        seedsStoring["Birch"] = 0;
+        seedsStoring["Cherry"] = 0;
+        seedsStoring["Pine"] = 0;
 
 
         InvalidSpawnTiles invalidSpawns = GameObject.Find("InvalidSpawnTiles").GetComponent<InvalidSpawnTiles>();
