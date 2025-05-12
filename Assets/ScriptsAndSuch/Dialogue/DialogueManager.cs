@@ -101,6 +101,7 @@ public class DialogueManager : MonoBehaviour
                 Debug.Log("questid: " + questid);
             }
         }
+
         //END NEW
 
         // Update sustainability levels

@@ -39,8 +39,6 @@ public class DialogueTrigger : MonoBehaviour
             interactionCue.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                // OLD
-                // DialogueManager.GetInstance().EnterDialogue(inkJSON, NPCSprite, NPCName);
                 DialogueManager.GetInstance().EnterDialogue(SetStory(), NPCSprite, NPCName, gameObject, questid);
             }
         }
