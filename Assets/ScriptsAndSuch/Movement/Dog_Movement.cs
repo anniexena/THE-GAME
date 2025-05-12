@@ -11,7 +11,7 @@ public class Dog_Movement : MonoBehaviour
     public Transform player;
     public Inventory playerInventory; // Reference to the player's inventory
     public Camera cam;
-
+    
     private float stopDistance = 7f;
     private Tilemap[] invalidSpawnTiles; // Invalid spawn tiles
     public bool following = false;
@@ -132,7 +132,6 @@ public class Dog_Movement : MonoBehaviour
                     break;
             }
             playerInventory.addSeeds(seedType, seedAmount);
-            print("added " + seedAmount + " " + seedType + " seeds");
         }
     }
 
