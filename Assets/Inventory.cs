@@ -75,23 +75,14 @@ public class Inventory : MonoBehaviour
                 seedsStoring[seedIndex] -= 1;
                 questManager.CheckQuestProgress(seedIndex);
             }
-
-            // Spawns a house
-            //if (Input.GetKeyDown(KeyCode.Space) && woodStoring > HOUSE_COST)
-            //{
-            //    Instantiate(house, worldPos, Quaternion.identity);
-            //    woodStoring -= HOUSE_COST;
-            //    Debug.Log("Wood: " + woodStoring);
-            //}
         }
         else if (hit.collider.gameObject.tag == "House")
         {
             House house = hit.collider.GetComponent<House>();
-            //print("Mouse: " + Input.GetMouseButtonDown(0));
-            //print("Fixing: " + !alreadyFixing);
             if (Input.GetMouseButtonDown(0) && !alreadyFixing) {
+
                 // if (house.woodType == woodIndex && house.getFixesNeeded() > 0)
-                if (house.getFixesNeeded() > 0 && getWood(woodIndex) > house.getCost())
+                if (house.getWoodType() == woodIndex && house.getFixesNeeded() > 0 && getWood(woodIndex) > house.getCost())
                 {
                     alreadyFixing = true;
                     Debug.Log(woodIndex);

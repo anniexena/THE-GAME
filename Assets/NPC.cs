@@ -25,4 +25,10 @@ public class NPC : MonoBehaviour
         return house.getFixesNeeded() * house.getCost();
     }
 
+    public string getHouseType()
+    {
+        return house.getWoodType();
+    }
+
+
 }

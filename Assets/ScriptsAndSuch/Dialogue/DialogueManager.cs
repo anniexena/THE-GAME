@@ -171,6 +171,13 @@ public class DialogueManager : MonoBehaviour
         {
             currentStory.variablesState["houseCost"] = houseCost;
         }
+
+        string houseType = npc.getHouseType();
+        if (currentStory.variablesState["houseType"] != null)
+        {
+            currentStory.variablesState["houseType"] = houseType;
+        }
+
     }
 
     // For clicking continue button in dialogue
