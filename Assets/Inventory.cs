@@ -70,7 +70,6 @@ public class Inventory : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1) && isValidTile(worldPos) && getSeeds(seedIndex) > 0)
             {
-                print("we should be able to plant seeds");
                 GameObject newSeed = Instantiate(seedToSpawn[seedIndex], worldPos, Quaternion.identity);
                 seedsStoring[seedIndex] -= 1;
                 player.plantSeeds();

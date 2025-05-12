@@ -38,7 +38,7 @@ public class Seed : MonoBehaviour
     private float growTimer = 0; // Timer for growing
     private float cutTimer = 0; // Timer for cutting
     private float seedSpawnTimer = 0; // Timer for growing
-    private bool cutTimerStart = false; // Whether we've started cutting or not
+    private bool cutting = false; // Whether we've started cutting or not
     public AudioClip axeAudio;
     public AudioClip treeFallingAudio;
 
@@ -53,7 +53,7 @@ public class Seed : MonoBehaviour
         updateColliders();
 
         // Determines seeds and wait time for spawning them
-        seeds = Random.Range(0, seedsHigh);
+        seeds = Random.Range(1, seedsHigh);
         seedSpawnWait = Random.Range(seedSpawnWaitLow, seedSpawnWaitHigh);
 
         // Determines time spent in the first phase
@@ -92,7 +92,6 @@ public class Seed : MonoBehaviour
             }
             else // Otherwise, plant has died
             {
-                //Debug.Log("Plant has now died");
                 Destroy(gameObject);
             }
         }
@@ -100,7 +99,6 @@ public class Seed : MonoBehaviour
         // If we can spread seeds and haven't yet, set off seed-spawning timer
         if (phase == MATURITY && !spread)
         {
-            print("SPWAN");
             seedSpawnTimer += Time.deltaTime;
 
             // If timer goes off, spawn seeds and update 'spread'
@@ -111,13 +109,6 @@ public class Seed : MonoBehaviour
                 spread = true;
             }
         }
-
-        // If we've started cutting, wait until timer goes off, then destroy the plant
-        if (cutTimerStart)
-        {
-            cutTimerStart = false;
-            StartCoroutine(cutTree());        
-        }
     }
 
     private IEnumerator cutTree()
@@ -125,17 +116,20 @@ public class Seed : MonoBehaviour
         SFXManager.instance.PlaySFXClip(treeFallingAudio, transform, 0.5f);
         yield return StartCoroutine(SFXManager.instance.PlaySFXClipAndWait(axeAudio, transform, 1f));
         if (!spread && phase == MATURITY) {
-            print("adding seeds " + seeds);
             playerInventory.addSeeds(seedName, seeds); // Plant would have seeds we could collect
         }
         playerInventory.addWood(seedName, wood);
         Destroy(gameObject);
+        cutting = false;
     }
 
     // If we left-click on the plant, we start cutting it down
     private void OnMouseDown()
     {
-        if (phase > 0) { cutTimerStart = true; }
+        if (phase > 0 && !cutting) {
+            cutting = true;
+            StartCoroutine(cutTree());
+        }
     }
 
     // Updates collider based on sprite

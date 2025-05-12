@@ -38,10 +38,15 @@ public class Dog_Movement : MonoBehaviour
             Follow(destination);
             if (Input.GetMouseButtonDown(0) && !digging && !DialogueManager.GetInstance().dialogueIsPlaying)
             {
+
                 Vector3 worldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+                float checkRadius = 2f;
+                Collider2D hit = Physics2D.OverlapCircle(worldPos, checkRadius);
+
                 worldPos.z = 0f; // Prevent disappearing by locking to 2D plane
                 bool validTile = isValidTile(worldPos);
-                if (validTile) { 
+                if (validTile && hit == null) { 
                     destination = worldPos;
                     digging = true;
                 }
