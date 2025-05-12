@@ -121,7 +121,7 @@ TextureImporter:
         width: 279
         height: 254
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      housePine_worst_0: -5062469509941433809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
