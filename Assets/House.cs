@@ -55,4 +55,9 @@ public class House : MonoBehaviour
     {
         return cost;
     }
+
+    public string getWoodType()
+    {
+        return woodType;
+    }
 }

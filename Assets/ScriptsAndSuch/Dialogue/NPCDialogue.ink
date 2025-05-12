@@ -2,6 +2,7 @@ VAR houseBroken = 0
 VAR houseCost = 0
 VAR town_health = 0
 VAR forest_health = 0
+VAR houseType = 0
 
 -> main
 
@@ -43,10 +44,10 @@ Hello there! It is good to run into you...
     Finally, you've done good on your duties and helped maintain my house, many thanks!
 - else:
     {houseBroken == 1:
-        ~ temp msg = "You've even helped maintain my house, though I could definitely use " + houseCost + " wood for repairs..."
+        ~ temp msg = "You've even helped maintain my house, though I could definitely use " + houseCost + " " + houseType + " wood for repairs..."
         {msg}
     - else:
-        ~ temp msg2 = "Lastly, I must ask you to please help and give me the " + houseCost + " wood I need for my house!"
+        ~ temp msg2 = "Lastly, I must plead you to give me the " + houseCost + " " + houseType + " wood I need for my house!"
         {msg2}
     }
 }

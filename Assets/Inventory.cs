@@ -42,9 +42,9 @@ public class Inventory : MonoBehaviour
         seedToSpawn["Cherry"] = CherrySeed;
 
         // Starting values
-        woodStoring["Birch"] = 0;
-        woodStoring["Cherry"] = 0;
-        woodStoring["Pine"] = 0;
+        woodStoring["Birch"] = 50;
+        woodStoring["Cherry"] = 50;
+        woodStoring["Pine"] = 50;
         seedsStoring["Birch"] = 50;
         seedsStoring["Cherry"] = 50;
         seedsStoring["Pine"] = 50;
@@ -72,23 +72,14 @@ public class Inventory : MonoBehaviour
                 GameObject newSeed = Instantiate(seedToSpawn[seedIndex], worldPos, Quaternion.identity);
                 seedsStoring[seedIndex] -= 1;
             }
-
-            // Spawns a house
-            //if (Input.GetKeyDown(KeyCode.Space) && woodStoring > HOUSE_COST)
-            //{
-            //    Instantiate(house, worldPos, Quaternion.identity);
-            //    woodStoring -= HOUSE_COST;
-            //    Debug.Log("Wood: " + woodStoring);
-            //}
         }
         else if (hit.collider.gameObject.tag == "House")
         {
             House house = hit.collider.GetComponent<House>();
-            //print("Mouse: " + Input.GetMouseButtonDown(0));
-            //print("Fixing: " + !alreadyFixing);
             if (Input.GetMouseButtonDown(0) && !alreadyFixing) {
+
                 // if (house.woodType == woodIndex && house.getFixesNeeded() > 0)
-                if (house.getFixesNeeded() > 0 && getWood(woodIndex) > house.getCost())
+                if (house.getWoodType() == woodIndex && house.getFixesNeeded() > 0 && getWood(woodIndex) > house.getCost())
                 {
                     alreadyFixing = true;
                     Debug.Log(woodIndex);
