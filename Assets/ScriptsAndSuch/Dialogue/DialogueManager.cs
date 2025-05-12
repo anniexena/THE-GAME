@@ -15,11 +15,15 @@ public class DialogueManager : MonoBehaviour
     // For name and sprite of NPC
     [SerializeField] private Image dialogueImage;
     [SerializeField] private Text nameText;
+    [SerializeField] private int questid;
 
     // For making choices
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
+
+    // For quests
+    [SerializeField] QuestManager questManager;
 
     // Other stuff
     public bool dialogueIsPlaying { get; private set; }
@@ -203,6 +207,13 @@ public class DialogueManager : MonoBehaviour
             isFollowing = (bool)currentStory.variablesState["followPlayer"];
         }
 
+        //Check for quest start
+        if (currentStory.variablesState["questActive"] != null && 
+            (bool)currentStory.variablesState["questActive"] == true)
+        {
+            HandleQuest();
+        }
+
         dialogueIsPlaying = false;
         dialogueBox.SetActive(false);
         dialogueText.text = "";
@@ -245,6 +256,44 @@ public class DialogueManager : MonoBehaviour
         currentStory.ChooseChoiceIndex(index);
         nextButton.SetActive(true);
         ContinueStory();
+    }
+
+    public void HandleQuest()
+    {
+        int questid = (int)currentStory.variablesState["questid"];
+        string questItem = (string)currentStory.variablesState["questItem"];
+        int questAmount = (int)currentStory.variablesState["questAmount"];
+
+        // First, check if they are turning in the quest
+        // Active quests dont have descriptions in their ink files
+        // Only turninable quests have "turnedIn" states in their ink files
+        // Else, start the quest
+        if (currentStory.variablesState["questDescription"] == null)
+        {
+            if (currentStory.variablesState["turnedIn"] != null)
+            {
+                QuestNode curr = questManager.activeQuests.head;
+                while (curr != null)
+                {
+                    if (curr.quest.questid == questid)
+                    {
+                        // If they choose to turn in the quest
+                        if ((bool)currentStory.variablesState["turnedIn"])
+                        {
+                            curr.quest.completionStatus = 3;
+                            questManager.turnInQuest(questItem, questAmount);
+                            questManager.UpdateQuestUI();
+                        }
+                    }
+                    curr = curr.next;
+                }
+            }
+        }
+        else
+        {
+            string questDescription = (string)currentStory.variablesState["questDescription"];
+            questManager.StartQuest(questid, questDescription, questItem, questAmount);
+        }
     }
 
     public static DialogueManager GetInstance()
