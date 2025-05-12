@@ -29,6 +29,7 @@ For this project, we used a few third-party resources:
 3) ChatGPT for learning Unity and debugging issues
 4) Websites such as https://pixabay.com/sound-effects/ for sound effects
 5) Websites such as https://www.freeconvert.com/webp-to-png and https://www.remove.bg/ for image editting
+6) INK library for creating dialogue interactions
 
 # Playing the Game
 Simply run the executable called "INSERT NAME HERE"
