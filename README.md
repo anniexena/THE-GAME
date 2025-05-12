@@ -35,4 +35,4 @@ For this project, we used a few third-party resources:
 The full ZIP file of the final build was simply too massive to push onto this git, so we've included the following link that will let you download the final build:
 https://drive.google.com/file/d/13LjSGH3rOUp1aaAbcOaW9U-Zw6Aj4K_o/view
 
-Simply download and extract the contents, and then run the "THE-GAME.exe" file. This zip will have it's own readme.md file
+Simply download and extract the contents, and then run the "THE-GAME.exe" file inside. This zip file has it's own readme.md file as well.
