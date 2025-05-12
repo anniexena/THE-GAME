@@ -92,6 +92,7 @@ public class DialogueManager : MonoBehaviour
             UpdateHC(npc);
             UpdateHS(npc);
         }
+
         //END NEW
 
         // Update sustainability levels
