@@ -41,7 +41,7 @@ public class DialogueTrigger : MonoBehaviour
             {
                 // OLD
                 // DialogueManager.GetInstance().EnterDialogue(inkJSON, NPCSprite, NPCName);
-                DialogueManager.GetInstance().EnterDialogue(SetStory(), NPCSprite, NPCName, gameObject);
+                DialogueManager.GetInstance().EnterDialogue(SetStory(), NPCSprite, NPCName, gameObject, questid);
             }
         }
         else
@@ -59,7 +59,7 @@ public class DialogueTrigger : MonoBehaviour
             return ink1;
         }
         // Check for non-questhavers
-        if (questid == 0)
+        if (questid != 1)
         {
             return ink0;
         }

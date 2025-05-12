@@ -67,7 +67,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     //ADDED parent field - atreyu
-    public void EnterDialogue(TextAsset inkJSON, Sprite NPCSprite, string NPCName, GameObject parent)
+    public void EnterDialogue(TextAsset inkJSON, Sprite NPCSprite, string NPCName, GameObject parent, int questid)
     {
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
@@ -85,12 +85,21 @@ public class DialogueManager : MonoBehaviour
             nameText.text = NPCName;
         }
 
+        // Update questid
+        this.questid = questid;
+
         //NEW
         NPC npc = parent.GetComponent<NPC>();
         if (npc != null)
         {
             UpdateHC(npc);
             UpdateHS(npc);
+            ConstructQuestDescription(npc);
+            if (currentStory.variablesState["questid"] != null)
+            {
+                currentStory.variablesState["questid"] = questid;
+                Debug.Log("questid: " + questid);
+            }
         }
         //END NEW
 
@@ -178,6 +187,16 @@ public class DialogueManager : MonoBehaviour
             currentStory.variablesState["houseType"] = houseType;
         }
 
+    }
+
+    private void ConstructQuestDescription(NPC npc)
+    {
+        if (currentStory.variablesState["questDescription"] != null)
+        {
+            currentStory.variablesState["questDescription"] =
+                "Collect " + npc.getHouseCost() + " " + npc.getHouseType()
+                + " to repair " + nameText.text + "'s house";
+        }
     }
 
     // For clicking continue button in dialogue
@@ -268,38 +287,69 @@ public class DialogueManager : MonoBehaviour
     public void HandleQuest()
     {
         int questid = (int)currentStory.variablesState["questid"];
-        string questItem = (string)currentStory.variablesState["questItem"];
-        int questAmount = (int)currentStory.variablesState["questAmount"];
 
-        // First, check if they are turning in the quest
-        // Active quests dont have descriptions in their ink files
-        // Only turninable quests have "turnedIn" states in their ink files
-        // Else, start the quest
-        if (currentStory.variablesState["questDescription"] == null)
+        // Check if its an npc house build quest
+        if (currentStory.variablesState["houseBroken"] != null)
         {
-            if (currentStory.variablesState["turnedIn"] != null)
+            Debug.Log("housebroekn: " + (int)currentStory.variablesState["houseBroken"]);
+            // Check if fixed
+            if ((int)currentStory.variablesState["houseBroken"] == 0)
             {
                 QuestNode curr = questManager.activeQuests.head;
                 while (curr != null)
                 {
                     if (curr.quest.questid == questid)
                     {
-                        // If they choose to turn in the quest
-                        if ((bool)currentStory.variablesState["turnedIn"])
-                        {
-                            curr.quest.completionStatus = 3;
-                            questManager.turnInQuest(questItem, questAmount);
-                            questManager.UpdateQuestUI();
-                        }
+                        curr.quest.completionStatus = 3;
+                        questManager.UpdateQuestUI();
                     }
                     curr = curr.next;
                 }
             }
+            else
+            {
+                string questDescription = (string)currentStory.variablesState["questDescription"];
+                string houseType = (string)currentStory.variablesState["houseType"];
+                int houseCost = (int)currentStory.variablesState["houseCost"];
+                Debug.Log("id: " + questid + "desc " + questDescription + "type " + houseType + "cost " + houseCost);
+                questManager.StartQuest(questid, questDescription, houseType, houseCost);
+            }
         }
         else
         {
-            string questDescription = (string)currentStory.variablesState["questDescription"];
-            questManager.StartQuest(questid, questDescription, questItem, questAmount);
+            string questItem = (string)currentStory.variablesState["questItem"];
+            int questAmount = (int)currentStory.variablesState["questAmount"];
+
+            // First, check if they are turning in the quest
+            // Active quests dont have descriptions in their ink files
+            // Only turninable quests have "turnedIn" states in their ink files
+            // Else, start the quest
+            if (currentStory.variablesState["questDescription"] == null)
+            {
+                if (currentStory.variablesState["turnedIn"] != null)
+                {
+                    QuestNode curr = questManager.activeQuests.head;
+                    while (curr != null)
+                    {
+                        if (curr.quest.questid == questid)
+                        {
+                            // If they choose to turn in the quest
+                            if ((bool)currentStory.variablesState["turnedIn"])
+                            {
+                                curr.quest.completionStatus = 3;
+                                questManager.turnInQuest(questItem, questAmount);
+                                questManager.UpdateQuestUI();
+                            }
+                        }
+                        curr = curr.next;
+                    }
+                }
+            }
+            else
+            {
+                string questDescription = (string)currentStory.variablesState["questDescription"];
+                questManager.StartQuest(questid, questDescription, questItem, questAmount);
+            }
         }
     }
 

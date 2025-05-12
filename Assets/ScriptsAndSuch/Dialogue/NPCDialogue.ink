@@ -4,6 +4,10 @@ VAR town_health = 0
 VAR forest_health = 0
 VAR houseType = 0
 
+VAR questid = 0
+VAR questDescription = ""
+VAR questActive = true
+
 -> main
 
 === main ===
@@ -46,11 +50,28 @@ Hello there! It is good to run into you...
     {houseBroken == 1:
         ~ temp msg = "You've even helped maintain my house, though I could definitely use " + houseCost + " " + houseType + " wood for repairs..."
         {msg}
+        + [I can help]
+            -> help
+        + [Do it yourself]
+            -> leave
     - else:
         ~ temp msg2 = "Lastly, I must plead you to give me the " + houseCost + " " + houseType + " wood I need for my house!"
         {msg2}
+        + [I'll help out]
+            -> help
+        + [No]
+            -> leave
     }
 }
+    -> end
+
+=== help ===
+Oh thank you! Come back when you have the wood.
+~questActive = true
+    -> end
+    
+=== leave ===
+Okay...I guess I'll find someone else to help me.
     -> end
 
 === end
