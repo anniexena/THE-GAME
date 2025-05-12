@@ -27,13 +27,15 @@ public class Inventory : MonoBehaviour
 
     private Tilemap[] invalidSpawnTiles; // Invalid spawn tiles
 
+    [SerializeField] QuestManager questManager;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         seedsStoring = new Dictionary<string, int>();
         woodStoring = new Dictionary<string, int>();
-        woodIndex = "Birch";
+        woodIndex = "Birch"; 
         seedIndex = "Birch";
 
         seedToSpawn = new Dictionary<string, GameObject>();
@@ -44,7 +46,7 @@ public class Inventory : MonoBehaviour
         // Starting values
         woodStoring["Birch"] = 0;
         woodStoring["Cherry"] = 0;
-        woodStoring["Pine"] = 0;
+        woodStoring["Pine"] = 5;
         seedsStoring["Birch"] = 50;
         seedsStoring["Cherry"] = 50;
         seedsStoring["Pine"] = 50;
@@ -71,6 +73,7 @@ public class Inventory : MonoBehaviour
                 print("we should be able to plant seeds");
                 GameObject newSeed = Instantiate(seedToSpawn[seedIndex], worldPos, Quaternion.identity);
                 seedsStoring[seedIndex] -= 1;
+                questManager.CheckQuestProgress(seedIndex);
             }
 
             // Spawns a house
@@ -93,6 +96,7 @@ public class Inventory : MonoBehaviour
                     alreadyFixing = true;
                     Debug.Log(woodIndex);
                     woodStoring[woodIndex] -= house.getCost();
+                    questManager.CheckQuestProgress(woodIndex);
                     StartCoroutine(fixHouse(house));
                 }
             }
@@ -115,6 +119,16 @@ public class Inventory : MonoBehaviour
         return woodStoring[woodType];
     }
 
+    public int getAllWood()
+    {
+        return (woodStoring["Birch"] + woodStoring["Pine"] + woodStoring["Cherry"]);
+    }
+
+    public int getAllSeeds()
+    {
+        return (seedsStoring["Birch"] + seedsStoring["Pine"] + seedsStoring["Cherry"]);
+    }
+
     public int getSeeds(string seedType)
     {
         if (!seedsStoring.ContainsKey(seedType))
@@ -135,6 +149,7 @@ public class Inventory : MonoBehaviour
         {
             seedsStoring[seedType] += toAdd;
         }
+        questManager.CheckQuestProgress(seedType);
     }
 
     public void addWood(string woodType, int toAdd)
@@ -148,6 +163,7 @@ public class Inventory : MonoBehaviour
         {
             woodStoring[woodType] += toAdd;
         }
+        questManager.CheckQuestProgress(woodType);
     }
 
     public void SelectSeedIndex(string seedType)
@@ -177,5 +193,10 @@ public class Inventory : MonoBehaviour
             if (tileAtPos != null) { return false; }
         }
         return true;
+    }
+
+    public void turnInQuest(string questItem, int questAmount)
+    {
+        woodStoring[questItem] -= questAmount;
     }
 }
