@@ -50,6 +50,10 @@ public class DialogueTrigger : MonoBehaviour
     // Checks the quest status and sets the ink json based on that
     private TextAsset SetStory()
     {
+        if (questid == 0)
+        {
+            return ink0;
+        }
         QuestNode curr = questManager.activeQuests.head;
 
         while (curr != null)
