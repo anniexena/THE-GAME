@@ -32,4 +32,4 @@ For this project, we used a few third-party resources:
 6) INK library for creating dialogue interactions
 
 # Playing the Game
-Simply run the executable called "INSERT NAME HERE"
+Simply download this github as a ZIP, extract the contents, and run the 
