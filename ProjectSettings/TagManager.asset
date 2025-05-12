@@ -11,6 +11,7 @@ TagManager:
   - People
   - Animal
   - ForestDecor
+  - TownDecor
   layers:
   - Default
   - TransparentFX
