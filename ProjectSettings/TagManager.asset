@@ -10,6 +10,7 @@ TagManager:
   - House
   - People
   - Animal
+  - ForestDecor
   layers:
   - Default
   - TransparentFX

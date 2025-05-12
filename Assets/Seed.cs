@@ -199,8 +199,8 @@ public class Seed : MonoBehaviour
                 Vector3 spawnPos = new Vector3(Random.Range(low_x, high_x),
                     Random.Range(low_y, high_y), 0);
 
-                // Will be used to ensure seeds don't spawn on top of other objects
-                float checkRadius = 4.5f; // Adjust this based on your seed size
+                // Makes sure seeds don't spawn on top of other objects
+                float checkRadius = 4.5f;
                 Collider2D hit = Physics2D.OverlapCircle(spawnPos, checkRadius);
 
                 // Will be used to ensure seeds spawn only on grass

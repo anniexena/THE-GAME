@@ -22,6 +22,9 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private int questid;
     [SerializeField] QuestManager questManager;
 
+    // For dog specifically
+    [SerializeField] Dog_Movement dog;
+
     private void Awake()
     {
         playerIsInRange = false;
@@ -50,6 +53,12 @@ public class DialogueTrigger : MonoBehaviour
     // Checks the quest status and sets the ink json based on that
     private TextAsset SetStory()
     {
+        // Check for dog following dialogue
+        if (NPCName == "Jeff the Dog" && dog.following)
+        {
+            return ink1;
+        }
+        // Check for non-questhavers
         if (questid == 0)
         {
             return ink0;

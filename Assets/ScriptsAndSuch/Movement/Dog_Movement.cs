@@ -10,11 +10,10 @@ public class Dog_Movement : MonoBehaviour
     public Transform player;
     public Inventory playerInventory; // Reference to the player's inventory
     public Camera cam;
-    public bool isFollowing;
 
     private float stopDistance = 7f;
     private Tilemap[] invalidSpawnTiles; // Invalid spawn tiles
-    private bool following = false;
+    public bool following = false;
     private Vector3 destination;
 
     private bool digging = false;
@@ -33,9 +32,6 @@ public class Dog_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DialogueManager.GetInstance().isFollowing) { following = true; }
-        else { following = false; }
-
         if (following)
         {
             Follow(destination);

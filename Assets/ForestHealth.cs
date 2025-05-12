@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEditor.Rendering;
+using System;
+using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class ForestHealth : MonoBehaviour
 {
@@ -9,13 +12,16 @@ public class ForestHealth : MonoBehaviour
     private float changeTimer = 0;
     private int changeRate = 3; // How quickly to be adding/removing animal
     private const int TERMINAL = 5;
+    private Tilemap[] invalidSpawnTiles; // Invalid spawn tiles
 
     public GameObject[] Animals;
+    public ForestDecor forestDecor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        InvalidSpawnTiles invalidSpawns = GameObject.Find("InvalidSpawnTiles").GetComponent<InvalidSpawnTiles>();
+        invalidSpawnTiles = invalidSpawns.invalidSpawnTiles;
     }
 
     // Update is called once per frame
@@ -45,18 +51,55 @@ public class ForestHealth : MonoBehaviour
                 // Reset timer variables
                 changeTimerStart = false;
                 changeTimer = 0;
-                revise(animalsActual, animalsExpected);
+                reviseAnimals(animalsActual, animalsExpected);
+                reviseDecor(animalsActual, animalsExpected);
+            }
+        }
+    }
+
+    void reviseDecor(int actual, int expected)
+    {
+        if (actual < expected)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Vector3 spawnPos = new Vector3(Random.Range(-400, 370), Random.Range(-172, 160), 0);
+                float checkRadius = 5f;
+                Collider2D hit = Physics2D.OverlapCircle(spawnPos, checkRadius);
+
+                // Will be used to ensure seeds spawn only on grass
+                bool validTile = isValidTile(spawnPos);
+
+                if (hit == null && validTile)
+                {
+                    Instantiate(forestDecor, spawnPos, Quaternion.identity);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                GameObject target = GameObject.Find("ForestDecor");
+                Destroy(target);
             }
         }
     }
 
 
-    void revise(int actual, int expected)
+    void reviseAnimals(int actual, int expected)
     {
         if (actual < expected)
         {
             int animal = Random.Range(0, Animals.Length);
-            Instantiate(Animals[animal], new Vector3(Random.Range(-250, 250), Random.Range(-10, 10), 0), Quaternion.identity);
+            float checkRadius = 5f;
+            Vector3 spawnPos = new Vector3(Random.Range(-400, 370), Random.Range(-172, 160), 0);
+            Collider2D hit = Physics2D.OverlapCircle(spawnPos, checkRadius);
+
+            if (hit == null)
+            {
+                Instantiate(Animals[animal], spawnPos, Quaternion.identity);
+            }
         }
         else
         {
@@ -70,4 +113,16 @@ public class ForestHealth : MonoBehaviour
         float animalsActual = GameObject.FindGameObjectsWithTag("Animal").Length / 5;
         return Mathf.Min(animalsActual, 8f);
     }
+
+    bool isValidTile(Vector3 pos)
+    {
+        foreach (Tilemap tilemap in invalidSpawnTiles)
+        {
+            Vector3Int cellPos = tilemap.WorldToCell(pos);
+            TileBase tileAtPos = tilemap.GetTile(cellPos);
+            if (tileAtPos != null) { return false; }
+        }
+        return true;
+    }
+
 }
