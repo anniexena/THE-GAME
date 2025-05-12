@@ -49,8 +49,6 @@ public class TownHealth : MonoBehaviour
                 // Reset timer variables
                 changeTimerStart = false;
                 changeTimer = 0;
-                print("Healthy Houses: " + healthyHouses);
-                print("Actual: " + decorActual + " Expected: " + decorExpected);
                 reviseDecor(decorActual, decorExpected);
             }
         }

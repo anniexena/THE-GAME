@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: plantSprites.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: 'plantSprites.Array.data[0]'
@@ -75,9 +75,13 @@ PrefabInstance:
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: 'plantSprites.Array.data[4]'
       value: 
-      objectReference: {fileID: 6813027302289984247, guid: 955d032e5915dee4eb2463c32065f3b0, type: 3}
+      objectReference: {fileID: 8559430981806818477, guid: d75e1a1c0809cdc43ba64c0841630b77, type: 3}
     - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: 'plantSprites.Array.data[5]'
+      value: 
+      objectReference: {fileID: 6813027302289984247, guid: 955d032e5915dee4eb2463c32065f3b0, type: 3}
+    - target: {fileID: -3885084720728482377, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
+      propertyPath: 'plantSprites.Array.data[6]'
       value: 
       objectReference: {fileID: 2571330705345463923, guid: 24eaa52366eaf934e96fe71e9c7b0d93, type: 3}
     - target: {fileID: 2597994501178518713, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}

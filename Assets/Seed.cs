@@ -100,12 +100,14 @@ public class Seed : MonoBehaviour
         // If we can spread seeds and haven't yet, set off seed-spawning timer
         if (phase == MATURITY && !spread)
         {
+            print("SPWAN");
             seedSpawnTimer += Time.deltaTime;
 
             // If timer goes off, spawn seeds and update 'spread'
             if (seedSpawnTimer > seedSpawnWait)
             {
                 spawn();
+                setPhase(phase + 1);
                 spread = true;
             }
         }
