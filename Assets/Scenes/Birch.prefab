@@ -85,6 +85,14 @@ PrefabInstance:
       value: Birch
       objectReference: {fileID: 0}
     - target: {fileID: 7157044777593186762, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157044777593186762, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157044777593186762, guid: 574a03264fe84ae40851681d63e5bbeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
